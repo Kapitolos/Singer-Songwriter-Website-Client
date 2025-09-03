@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fefce8;
+  --foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fefce8;
+    --foreground: #000000;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Playfair Display', 'Crimson Text', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+}
+
+/* Cream background for cards */
+.bg-white {
+  background-color: #f5f5dc !important;
+}
+
+/* Center slide - Fully visible & bigger */
+.slick-center {
+  transform: scale(1.05);
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Side slides - Slightly smaller & dimmer */
+.slick-slide:not(.slick-center) {
+  transform: scale(0.9);
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Custom carousel arrows */
+.slick-prev,
+.slick-next {
+  color: black !important;
+  background: rgba(245, 245, 220, 0.9) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  z-index: 10 !important;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: #f5f5dc !important;
+  color: black !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 20px !important;
+}
+
+/* Custom slider styles */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Firefox thumb */
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fefce8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
+}
+
+
