@@ -1,247 +1,194 @@
-# Thomas Matthew Gibson - Music E-Commerce Portfolio
+# MusicECom - Client Application
 
-A professional portfolio website showcasing e-commerce development skills with a focus on security, user experience, and modern web technologies.
+A modern, responsive music e-commerce website built with Next.js for Thomas Matthew Gibson, a singer/songwriter from Nova Scotia. This application features album showcases, merchandise sales, audio previews, and integrated payment processing.
 
-## 🎵 About
+## 🎵 Features
 
-This is the official website of Thomas Matthew Gibson, a singer/songwriter from Nova Scotia. The site serves as both a music portfolio and a demonstration of e-commerce development capabilities.
+- **Artist Showcase**: Beautiful landing page featuring the artist's latest releases and performances
+- **Album Gallery**: Interactive carousel displaying all albums with preview tracks
+- **Audio Player**: Built-in audio player for music previews
+- **E-commerce**: Shopping cart and checkout functionality with Stripe integration
+- **Merchandise**: Product catalog for physical items (vinyl, t-shirts, posters)
+- **User Authentication**: Firebase-based user registration and login
+- **Responsive Design**: Mobile-first design with Tailwind CSS
+- **News & Contact**: Sections for updates and contact information
 
-## 🛒 E-Commerce Features
+## 🛠️ Tech Stack
 
-### Shopping Cart System
-- **State Management**: React Context API with useReducer for cart state
-- **Persistent Storage**: LocalStorage integration for cart persistence
-- **Real-time Updates**: Live cart count and total calculations
-- **Responsive Design**: Mobile-friendly cart interface
+- **Framework**: Next.js 15.5.0 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Authentication**: Firebase Auth
+- **Payments**: Stripe
+- **State Management**: React Context (Cart & Auth)
+- **UI Components**: Custom components with Framer Motion animations
+- **Icons**: Heroicons & React Icons
+- **Carousel**: React Slick
 
-### Product Management
-- **Product Display**: Detailed product information with images
-- **Inventory Tracking**: Quantity management and stock validation
-- **Pricing**: CAD currency support with shipping calculations
-- **Product Categories**: Organized merchandise sections
+## 📦 Installation
 
-### Checkout Process
-- **Multi-step Flow**: Shipping → Payment → Confirmation
-- **Form Validation**: Client-side validation with error handling
-- **Address Validation**: Canadian postal code format validation
-- **Payment Security**: Credit card validation and secure processing simulation
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd MusicECom/mec
+   ```
 
-### Security Features
-- **Input Sanitization**: XSS prevention and data cleaning
-- **Form Validation**: Comprehensive client-side validation
-- **CSRF Protection**: Token-based cross-site request forgery prevention
-- **Content Security Policy**: XSS and injection attack prevention
-- **Rate Limiting**: API endpoint protection against abuse
-- **Secure Headers**: Security-focused HTTP headers
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## 🛡️ Security Implementation
+3. **Environment Setup**
+   Create a `.env.local` file in the root directory:
+   ```env
+   # Firebase Configuration
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-### Data Protection
-- **Input Sanitization**: Removes potentially malicious HTML and scripts
-- **Validation**: Comprehensive form validation for all user inputs
-- **Encryption**: SHA-256 hashing for sensitive data
-- **Secure Storage**: LocalStorage with data sanitization
+   # Stripe Configuration
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   STRIPE_SECRET_KEY=your_stripe_secret_key
 
-### Payment Security
-- **Credit Card Validation**: Luhn algorithm implementation
-- **CVV Validation**: Secure card verification value checking
-- **Expiry Validation**: Date format and expiration checking
-- **Amount Validation**: Payment amount limits and validation
+   # Base URL
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   ```
 
-### Web Security
-- **Content Security Policy**: XSS and injection prevention
-- **X-Frame-Options**: Clickjacking protection
-- **X-Content-Type-Options**: MIME type sniffing prevention
-- **Referrer Policy**: Privacy-focused referrer handling
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-## 🚀 Technical Stack
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Frontend
-- **Next.js 15**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS**: Utility-first CSS framework
-- **React Context**: State management
-- **Heroicons**: Professional icon library
+## 🏗️ Project Structure
 
-### E-Commerce
-- **Cart Context**: Centralized shopping cart management
-- **Form Handling**: Controlled components with validation
-- **Local Storage**: Persistent cart data
-- **Responsive Design**: Mobile-first approach
-
-### Security
-- **Input Validation**: Comprehensive form validation
-- **Data Sanitization**: XSS prevention
-- **Secure Headers**: Security-focused HTTP responses
-- **Rate Limiting**: API protection mechanisms
-
-## 📱 Features
-
-### Navigation
-- **Responsive Navbar**: Mobile-friendly navigation
-- **Section-based Layout**: Home, Releases, Merch, News, Contact
-- **Cart Integration**: Shopping cart accessible from any page
-
-### Music Section
-- **Album Carousel**: Interactive music showcase
-- **Streaming Links**: Spotify and Bandcamp integration
-- **Audio Player**: Embedded music player
-- **Album Information**: Detailed release information
-
-### Merchandise
-- **Product Catalog**: Vinyl records and merchandise
-- **Shopping Cart**: Add/remove items functionality
-- **Checkout Process**: Secure payment flow
-- **Order Management**: Cart persistence and management
-
-### News & Updates
-- **YouTube Integration**: Embedded music videos
-- **Newsletter Signup**: Email subscription functionality
-- **Content Management**: Easy content updates
-
-## 🔧 Development
-
-### Getting Started
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-### Project Structure
 ```
 mec/
-├── app/                    # Next.js App Router
+├── app/                    # Next.js App Router pages
 │   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Main page component
-├── components/             # React components
-│   ├── Cart.tsx           # Shopping cart
-│   ├── Checkout.tsx       # Checkout process
-│   ├── Merch.tsx          # Merchandise display
-│   ├── Navbar.tsx         # Navigation
-│   └── ...                # Other components
-├── contexts/               # React contexts
-│   └── CartContext.tsx    # Shopping cart state
-├── data/                   # Static data
-│   └── albums/            # Album information
-├── utils/                  # Utility functions
-│   └── security.ts        # Security utilities
-└── public/                 # Static assets
-    └── albums/            # Album images
+│   ├── layout.tsx         # Root layout component
+│   └── page.tsx           # Home page
+├── components/            # Reusable React components
+│   ├── AlbumBlurb.tsx    # Album detail component
+│   ├── AudioPlayer.tsx   # Audio playback component
+│   ├── Carousel.tsx      # Album carousel
+│   ├── Cart.tsx          # Shopping cart
+│   ├── Checkout.tsx      # Checkout process
+│   ├── Contact.tsx       # Contact form
+│   ├── Login.tsx         # User authentication
+│   ├── Merch.tsx         # Merchandise catalog
+│   ├── Navbar.tsx        # Navigation component
+│   ├── News.tsx          # News/updates section
+│   └── Register.tsx      # User registration
+├── config/               # Configuration files
+│   ├── firebase.ts       # Firebase setup
+│   └── shopify.ts        # Stripe/payment config
+├── contexts/             # React Context providers
+│   ├── AuthContext.tsx   # Authentication state
+│   └── CartContext.tsx   # Shopping cart state
+├── data/                 # Static data
+│   └── albums/           # Album information
+├── public/               # Static assets
+│   └── albums/           # Album artwork and audio files
+└── utils/                # Utility functions
+    ├── hashUtils.ts      # Hashing utilities
+    └── security.ts       # Security helpers
 ```
 
-### Key Components
+## 🎨 Key Components
 
-#### CartContext
-- Manages shopping cart state
-- Handles add/remove/update operations
-- Provides cart persistence
-- Exposes cart utilities
+### Home Page (`app/page.tsx`)
+- Artist introduction and latest release showcase
+- Featured video embed (YouTube)
+- Spotify and Bandcamp integration
+- Navigation between different sections
 
-#### Cart Component
-- Displays cart contents
-- Quantity management
-- Remove items functionality
-- Checkout integration
+### Album System
+- **Album Data** (`data/albums/albums.ts`): Centralized album information
+- **Carousel** (`components/Carousel.tsx`): Interactive album display
+- **Album Blurb** (`components/AlbumBlurb.tsx`): Detailed album information
 
-#### Checkout Component
-- Multi-step checkout process
-- Form validation
-- Payment information collection
-- Security measures
+### E-commerce Features
+- **Cart System**: Add/remove items, quantity management
+- **Checkout**: Stripe integration for secure payments
+- **Product Catalog**: Physical merchandise (vinyl, apparel, posters)
 
-#### Security Utils
-- Input sanitization
-- Form validation
-- Payment validation
-- Security headers
+### Authentication
+- **Firebase Auth**: User registration and login
+- **Protected Routes**: Secure access to user-specific features
+- **Context Management**: Global authentication state
 
-## 🎯 Portfolio Highlights
+## 🚀 Deployment
 
-### E-Commerce Expertise
-- **Full Shopping Cart**: Complete cart functionality
-- **Checkout Process**: Professional checkout flow
-- **Payment Integration**: Secure payment handling
-- **Inventory Management**: Product and quantity tracking
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy automatically on push
 
-### Security Implementation
-- **Data Protection**: Comprehensive security measures
-- **Input Validation**: Robust form validation
-- **XSS Prevention**: Cross-site scripting protection
-- **CSRF Protection**: Cross-site request forgery prevention
+### Other Platforms
+The app can be deployed to any platform that supports Next.js:
+- Netlify
+- AWS Amplify
+- Railway
+- DigitalOcean App Platform
 
-### User Experience
-- **Responsive Design**: Mobile-first approach
-- **Intuitive Navigation**: Clear user flow
-- **Performance**: Optimized loading and interactions
-- **Accessibility**: Screen reader friendly
+## 🔧 Available Scripts
 
-### Technical Skills
-- **Modern React**: Hooks, Context, TypeScript
-- **State Management**: Complex state handling
-- **Form Handling**: Advanced form validation
-- **Security**: Web security best practices
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint for code quality
 
-## 🔒 Security Considerations
+## 🎵 Album Data
 
-### Production Deployment
-- **HTTPS**: SSL/TLS encryption required
-- **Environment Variables**: Secure configuration management
-- **API Security**: Rate limiting and authentication
-- **Monitoring**: Security event logging
+The application includes albums from Thomas Matthew Gibson's discography:
+- **Lakeview** - Apartment-recorded demo with authentic vibe
+- **To Say No More Goodbyes** - Pandemic-era isolation recording
+- **Hello Mary Hello Nothing** - Rock and roll lockdown outlet
+- **Crossing** - Tribute to lost loved ones
+- **Even Lines** - Studio-recorded with full production
 
-### Payment Processing
-- **PCI Compliance**: Payment card industry standards
-- **Tokenization**: Secure payment data handling
-- **Fraud Detection**: Transaction monitoring
-- **Compliance**: Regulatory requirements
+## 🔐 Security Features
 
-### Data Protection
-- **Privacy Policy**: User data handling
-- **GDPR Compliance**: European data protection
-- **Data Encryption**: At rest and in transit
-- **Access Control**: User permission management
+- Environment variable protection
+- Firebase security rules
+- Stripe secure payment processing
+- Input validation and sanitization
+- CORS configuration
 
-## 📈 Future Enhancements
+## 📱 Responsive Design
 
-### E-Commerce Features
-- **Payment Gateway**: Stripe/PayPal integration
-- **Inventory Management**: Real-time stock tracking
-- **Order Management**: Customer order history
-- **Shipping Integration**: Real-time shipping rates
+The application is fully responsive with:
+- Mobile-first approach
+- Touch-friendly interactions
+- Optimized images and audio
+- Progressive Web App capabilities
 
-### Security Improvements
-- **Two-Factor Authentication**: Enhanced account security
-- **Fraud Detection**: AI-powered transaction monitoring
-- **Compliance Tools**: Automated compliance checking
-- **Security Auditing**: Regular security assessments
+## 🤝 Contributing
 
-### User Experience
-- **Personalization**: User preference management
-- **Recommendations**: AI-powered product suggestions
-- **Social Features**: User reviews and ratings
-- **Mobile App**: Native mobile application
-
-## 📞 Contact
-
-For questions about this portfolio or e-commerce implementation:
-- **Email**: thomasmgibson@gmail.com
-- **Website**: [thomasmatthewgibson.com](https://thomasmatthewgibson.com)
-- **GitHub**: [@Kapitolos](https://github.com/Kapitolos)
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is for portfolio demonstration purposes. All music and merchandise belong to Thomas Matthew Gibson.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
----
+## 🎤 About the Artist
 
-**Built with ❤️ using Next.js, React, TypeScript, and modern web technologies**
+Thomas Matthew Gibson is a singer/songwriter from Nova Scotia, Canada. His music spans from intimate acoustic recordings to full studio productions, with each album telling a unique story of creation and personal growth.
+
+**Listen on Spotify**: [Thomas Matthew Gibson](https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA)
+
+**Buy on Bandcamp**: [thomasmatthewgibson.bandcamp.com](https://thomasmatthewgibson.bandcamp.com)
+
+## 🆘 Support
+
+For support, email support@thomasmatthewgibson.com or create an issue in this repository.

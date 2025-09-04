@@ -170,3 +170,4 @@ export default function Register({ onClose, onSwitchToLogin }: RegisterProps) {
   );
 }
 
+
