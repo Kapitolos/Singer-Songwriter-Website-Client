@@ -13,7 +13,7 @@ type NavbarProps = {
 export default function Navbar({ activeSection, onSectionChange }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
-  const { toggleCart, getTotalItems } = useCart();
+  const { toggleCart, state } = useCart();
   const { state: authState, logout } = useAuth();
 
   const navItems = [
@@ -57,9 +57,9 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
               className="relative p-2 text-gray-700 hover:text-black hover:bg-amber-50 rounded-md transition-colors duration-200"
             >
               <IoCart size={24} />
-              {getTotalItems() > 0 && (
+              {state.totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                  {getTotalItems()}
+                  {state.totalItems}
                 </span>
               )}
             </button>
@@ -96,9 +96,9 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                className="relative p-2 text-gray-700 hover:text-black transition-colors"
              >
               <IoCart size={24} />
-              {getTotalItems() > 0 && (
+              {state.totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                  {getTotalItems()}
+                  {state.totalItems}
                 </span>
               )}
             </button>
