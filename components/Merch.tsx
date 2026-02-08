@@ -54,9 +54,9 @@ export default function Merch() {
                 </button>
                 <a 
                   href="https://thomasmatthewgibson.bandcamp.com/album/even-lines"
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-center"
+                  className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-center"
                 >
                   Buy on Bandcamp
                 </a>
@@ -75,7 +75,7 @@ export default function Merch() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
-              src="/albums/vinyl.jpg" 
+              src="/albums/shirt.png" 
               alt="Even Lines T-Shirt" 
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
             />
@@ -99,7 +99,7 @@ export default function Merch() {
                     id: "even-lines-tshirt",
                     name: "Even Lines T-Shirt",
                     price: 25,
-                    image: "/albums/vinyl.jpg",
+                    image: "/albums/shirt.png",
                   })}
                   className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
@@ -159,16 +159,6 @@ export default function Merch() {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Coming Soon Section */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
-        <div className="text-center">
-          <h3 className="text-2xl font-semibold text-black mb-4">More Merch Coming Soon</h3>
-          <p className="text-gray-700 mb-6">
-            Stay tuned for more merchandise including hoodies, stickers, and other limited edition items.
-          </p>
         </div>
       </div>
     </div>

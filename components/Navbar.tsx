@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "../contexts/CartContext";
-import { useAuth } from "../contexts/AuthContext";
-import { IoCart, IoPerson, IoLogOut } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 
 type NavbarProps = {
   activeSection: string;
@@ -12,9 +11,7 @@ type NavbarProps = {
 
 export default function Navbar({ activeSection, onSectionChange }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showAuth, setShowAuth] = useState(false);
   const { toggleCart, state } = useCart();
-  const { state: authState, logout } = useAuth();
 
   const navItems = [
     { id: "home", label: "Home" },
@@ -25,16 +22,17 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
   ];
 
   return (
-         <nav className="bg-white shadow-lg border-b border-amber-100 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo/Brand */}
-          <div className="flex items-center">
-            <h1 className="text-xl font-bold text-black">Thomas Matthew Gibson</h1>
-          </div>
-
+         <nav className="bg-white shadow-lg border-b border-amber-100 sticky top-0 z-50 relative" style={{
+           backgroundImage: "url('/albums/MyBlueSkiesSingle.jpg')",
+           backgroundSize: "cover",
+           backgroundPosition: "center",
+           backgroundRepeat: "no-repeat"
+         }}>
+      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex justify-between items-center h-32">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -42,7 +40,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   activeSection === item.id
                     ? "bg-black text-white"
-                    : "text-gray-700 hover:text-black hover:bg-amber-50"
+                    : "text-white hover:text-white hover:bg-black hover:bg-opacity-50 drop-shadow-lg"
                 }`}
               >
                 {item.label}
@@ -54,7 +52,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
           <div className="hidden md:flex items-center space-x-2">
             <button
               onClick={toggleCart}
-              className="relative p-2 text-gray-700 hover:text-black hover:bg-amber-50 rounded-md transition-colors duration-200"
+              className="relative p-2 text-white hover:text-white hover:bg-black hover:bg-opacity-50 rounded-md transition-colors duration-200 drop-shadow-lg"
             >
               <IoCart size={24} />
               {state.totalItems > 0 && (
@@ -63,37 +61,13 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                 </span>
               )}
             </button>
-
-            {/* Auth Controls */}
-            {authState.isAuthenticated ? (
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600">
-                  Hi, {authState.user?.displayName || authState.user?.email?.split('@')[0]}
-                </span>
-                <button
-                  onClick={logout}
-                  className="p-2 text-gray-700 hover:text-black hover:bg-amber-50 rounded-md transition-colors duration-200"
-                  title="Sign Out"
-                >
-                  <IoLogOut size={20} />
-                </button>
-              </div>
-            ) : (
-                                            <button
-                 onClick={() => setShowAuth(true)}
-                 className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-black hover:bg-amber-50 rounded-md transition-colors duration-200"
-               >
-                 <IoPerson size={16} />
-                 <span>Sign In</span>
-               </button>
-            )}
           </div>
 
           {/* Mobile menu button and cart */}
           <div className="md:hidden flex items-center space-x-3">
                          <button
                onClick={toggleCart}
-               className="relative p-2 text-gray-700 hover:text-black transition-colors"
+               className="relative p-2 text-white hover:text-white hover:bg-black hover:bg-opacity-50 transition-colors drop-shadow-lg"
              >
               <IoCart size={24} />
               {state.totalItems > 0 && (
@@ -104,7 +78,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
             </button>
                          <button
                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-               className="text-gray-700 hover:text-black focus:outline-none focus:text-black"
+               className="text-white hover:text-white focus:outline-none focus:text-white drop-shadow-lg"
              >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
@@ -120,7 +94,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-amber-100">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-black bg-opacity-90 border-t border-amber-100">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -130,8 +104,8 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                   }}
                                      className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                      activeSection === item.id
-                       ? "bg-black text-white"
-                       : "text-gray-700 hover:text-black hover:bg-amber-50"
+                       ? "bg-white bg-opacity-20 text-white"
+                       : "text-white hover:text-white hover:bg-white hover:bg-opacity-20"
                    }`}
                 >
                   {item.label}

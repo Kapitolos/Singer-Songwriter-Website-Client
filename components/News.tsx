@@ -1,14 +1,28 @@
 import React from "react";
 
+type NewsItem = {
+  id: number;
+  date: string;
+  title: string;
+  content: string;
+  link?: string;
+  linkText?: string;
+  type: "post" | "video";
+  videoId?: string;
+  imageUrl?: string;
+};
+
 export default function News() {
-  const newsItems = [
+  const newsItems: NewsItem[] = [
     {
       id: 1,
       date: "October 24, 2024",
       title: "Even Lines Vinyl Now Available",
       content: "Limited edition vinyl of 'Even Lines' is now available for purchase. Only 25 copies pressed, so get yours while supplies last!",
       link: "https://thomasmatthewgibson.bandcamp.com/album/even-lines",
-      linkText: "Buy on Bandcamp"
+      linkText: "Buy on Bandcamp",
+      type: "post",
+      imageUrl: "/albums/vinyl.jpg"
     },
     {
       id: 2,
@@ -16,7 +30,25 @@ export default function News() {
       title: "Even Lines Album Release",
       content: "The new album 'Even Lines' is now available on all streaming platforms. This is the big one - finally got to a studio and decided I needed to get loud.",
       link: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-      linkText: "Listen on Spotify"
+      linkText: "Listen on Spotify",
+      type: "post",
+      imageUrl: "/albums/EL.jpg"
+    },
+    {
+      id: 5,
+      date: "October 2024",
+      title: "Performance Video",
+      content: "Check out this live performance video featuring songs from the latest album.",
+      type: "video",
+      videoId: "WlpLONr1oHQ"
+    },
+    {
+      id: 6,
+      date: "October 2024",
+      title: "Behind the Scenes",
+      content: "Take a look behind the scenes of the recording process and see how the music comes together.",
+      type: "video",
+      videoId: "kFS_rlyqqKA"
     },
     {
       id: 3,
@@ -24,7 +56,9 @@ export default function News() {
       title: "Crossing Single Release",
       content: "Released 'Crossing' - the oldest of all recordings. Lost my uncle and a very old friend in close succession and with both passings I didn't have much of an outlet other than picking up my guitar.",
       link: "https://thomasmatthewgibson.bandcamp.com/album/crossing",
-      linkText: "Listen on Bandcamp"
+      linkText: "Listen on Bandcamp",
+      type: "post",
+      imageUrl: "/albums/Crossing.jpg"
     },
     {
       id: 4,
@@ -32,9 +66,19 @@ export default function News() {
       title: "Hello Mary Hello Nothing EP",
       content: "Yet another lockdown led to yet another outlet. This time I wanted some rock and roll and these songs just poured out in a matter of days.",
       link: "https://thomasmatthewgibson.bandcamp.com/album/hello-mary-hello-nothing",
-      linkText: "Listen on Bandcamp"
+      linkText: "Listen on Bandcamp",
+      type: "post",
+      imageUrl: "/albums/HMHN.jpg"
     }
   ];
+
+  // Sort by date (most recent first) - simple string comparison should work for these date formats
+  const sortedItems = [...newsItems].sort((a, b) => {
+    // Convert dates to comparable format (approximate)
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateB - dateA;
+  });
 
   return (
     <div className="space-y-8">
@@ -43,67 +87,53 @@ export default function News() {
         <p className="text-gray-600">Stay up to date with the latest releases and news</p>
       </div>
 
-      {/* YouTube Videos Section */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-semibold text-black mb-4">Latest Videos</h3>
-          <p className="text-gray-600">Check out the latest performances and behind-the-scenes content</p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-black text-center">Performance Video</h4>
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/WlpLONr1oHQ?si=-kCeKt2Pnf1H9wgb" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-black text-center">Behind the Scenes</h4>
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/kFS_rlyqqKA?si=YCAcAr5JjHyBczkH" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="space-y-6">
-        {newsItems.map((item) => (
+        {sortedItems.map((item) => (
           <div key={item.id} className="bg-white rounded-2xl shadow-xl p-6 border border-amber-100">
             <div className="flex flex-col lg:flex-row lg:items-start gap-4">
               <div className="lg:w-1/4">
-                <div className="text-sm text-gray-500 font-medium">{item.date}</div>
+                <div className="text-sm text-gray-500 font-medium mb-3">{item.date}</div>
+                {item.imageUrl && (
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.title}
+                    className="w-24 h-24 object-cover rounded-lg shadow-md"
+                  />
+                )}
               </div>
               <div className="lg:w-3/4">
                 <h3 className="text-xl font-semibold text-black mb-3">{item.title}</h3>
                 <p className="text-gray-700 mb-4 leading-relaxed">{item.content}</p>
-                <a 
-                  href={item.link}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-                >
-                  {item.linkText}
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                
+                {item.type === "video" && item.videoId && (
+                  <div className="mb-4">
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe 
+                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                        src={`https://www.youtube.com/embed/${item.videoId}?si=-kCeKt2Pnf1H9wgb`}
+                        title={item.title}
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerPolicy="strict-origin-when-cross-origin" 
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  </div>
+                )}
+                
+                {item.link && item.linkText && (
+                  <a 
+                    href={item.link}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                  >
+                    {item.linkText}
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
           </div>
