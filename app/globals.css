@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Estonia&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,9 +19,20 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Playfair Display', 'Crimson Text', Georgia, serif;
-  font-weight: 300;
-  letter-spacing: 0.025em;
+  font-family: "Estonia", cursive !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.125rem;
+}
+
+/* Increase font size for text content without affecting layout */
+p, span, a, li, td, th, label {
+  font-size: 1.125rem;
+}
+
+/* Keep buttons and inputs at reasonable sizes */
+button, input, textarea, select {
+  font-size: 1rem;
 }
 
 /* Cream background for cards */
@@ -135,6 +148,38 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b45309;
+}
+
+/* Slow crossfade transition for images */
+.duration-2000 {
+  transition-duration: 2000ms;
+}
+
+/* Panning animations for lyrics background */
+@keyframes pan-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes pan-left {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-pan-right {
+  animation: pan-right linear infinite;
+}
+
+.animate-pan-left {
+  animation: pan-left linear infinite;
 }
 
 

@@ -16,11 +16,6 @@ export default function Merch() {
 
   return (
     <div className="space-y-8">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-black mb-2">Merchandise</h2>
-        <p className="text-gray-600">Limited edition vinyl and merchandise available now</p>
-      </div>
-
       {/* Even Lines Vinyl */}
       <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">

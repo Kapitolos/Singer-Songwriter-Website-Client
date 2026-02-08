@@ -8,6 +8,8 @@ import Merch from "../components/Merch";
 import News from "../components/News";
 import Contact from "../components/Contact";
 import Cart from "../components/Cart";
+import CrossfadeImage from "../components/CrossfadeImage";
+import LyricsBackground from "../components/LyricsBackground";
 import { CartProvider } from "../contexts/CartContext";
 import { AuthProvider } from "../contexts/AuthContext";
 
@@ -32,22 +34,13 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Tub Image */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
-              <div className="flex justify-center">
-                <img 
-                  src="/albums/Tub.jpg" 
-                  alt="Tub" 
-                  className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
+            {/* Crossfade Images */}
+            <CrossfadeImage />
           </div>
         );
       case "releases":
         return (
           <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
-            <h2 className="text-2xl font-bold text-black mb-6 text-center">Latest Releases</h2>
             <Carousel albums={albums} />
           </div>
         );
@@ -65,12 +58,15 @@ export default function Home() {
   return (
     <AuthProvider>
       <CartProvider>
-        <div className="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50">
-          <Navbar activeSection={activeSection} onSectionChange={setActiveSection} />
-          <main className="container mx-auto px-4 py-8 max-w-6xl">
-            {renderSection()}
-          </main>
-          <Cart />
+        <div className="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 relative">
+          {activeSection === "home" && <LyricsBackground />}
+          <div className="relative z-10">
+            <Navbar activeSection={activeSection} onSectionChange={setActiveSection} />
+            <main className="container mx-auto px-4 py-8 max-w-6xl">
+              {renderSection()}
+            </main>
+            <Cart />
+          </div>
         </div>
       </CartProvider>
     </AuthProvider>

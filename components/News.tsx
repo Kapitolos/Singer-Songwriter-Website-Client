@@ -82,11 +82,6 @@ export default function News() {
 
   return (
     <div className="space-y-8">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-black mb-2">News & Updates</h2>
-        <p className="text-gray-600">Stay up to date with the latest releases and news</p>
-      </div>
-
       <div className="space-y-6">
         {sortedItems.map((item) => (
           <div key={item.id} className="bg-white rounded-2xl shadow-xl p-6 border border-amber-100">
@@ -107,7 +102,7 @@ export default function News() {
                 
                 {item.type === "video" && item.videoId && (
                   <div className="mb-4">
-                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                    <div className="relative w-full" style={{ paddingBottom: '47.8%' }}>
                       <iframe 
                         className="absolute top-0 left-0 w-full h-full rounded-lg"
                         src={`https://www.youtube.com/embed/${item.videoId}?si=-kCeKt2Pnf1H9wgb`}
