@@ -32,7 +32,7 @@ export default function Merch() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
-              src="/albums/vinyl.jpg" 
+              src={assetPath("/albums/vinyl.jpg")} 
               alt="Even Lines Vinyl" 
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
             />
