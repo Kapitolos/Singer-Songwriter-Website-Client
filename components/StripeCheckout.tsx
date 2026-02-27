@@ -10,12 +10,12 @@ interface StripeCheckoutProps {
 }
 
 export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
-  const { state, closeCart, getTotalPrice } = useCart();
+  const { state, closeCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutSession, setCheckoutSession] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const totalPrice = getTotalPrice();
+  const totalPrice = state.totalPrice;
   const shippingCost = 15; // Fixed shipping cost
   const taxRate = 0.15; // 15% tax rate
   const taxAmount = totalPrice * taxRate;
@@ -23,21 +23,18 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
 
   // Convert cart items to Stripe line items
   const getStripeLineItems = () => {
-    return state.items.map(item => {
-      const product = productConfig.variants.find(v => v.id === item.id);
-      return {
-        price_data: {
-          currency: stripeConfig.currency,
-          product_data: {
-            name: item.name,
-            images: [item.image],
-            description: `${item.name} - Thomas Matthew Gibson Merchandise`
-          },
-          unit_amount: Math.round(item.price * 100), // Stripe expects cents
+    return state.items.map(item => ({
+      price_data: {
+        currency: stripeConfig.currency,
+        product_data: {
+          name: item.product.title,
+          images: [item.product.imageUrl],
+          description: `${item.product.title} - Thomas Matthew Gibson Merchandise`
         },
-        quantity: item.quantity,
-      };
-    });
+        unit_amount: Math.round(item.product.price * 100), // Stripe expects cents
+      },
+      quantity: item.quantity,
+    }));
   };
 
   // Create Stripe checkout session
@@ -102,7 +99,7 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
       <div className="fixed inset-0 z-50 overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
         
-        <div className="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+        <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
           <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
@@ -115,16 +112,26 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
               </button>
             </div>
 
-            {/* Redirect Message */}
+            {/* Redirect Message (demo: no real redirect or payment) */}
             <div className="flex-1 flex items-center justify-center p-6">
-              <div className="text-center">
+              <div className="text-center max-w-md">
                 <div className="text-green-500 mb-4">
                   <IoCheckmarkCircle size={64} />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Redirecting to Stripe</h3>
-                <p className="text-gray-600 mb-6">
-                  You're being redirected to Stripe's secure checkout.
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Demo: Checkout session created</h3>
+                <p className="text-gray-600 mb-4">
+                  This is a mock. In production, you would be redirected to Stripe here and complete payment on Stripe's page. No redirect or charge happens in this demo.
                 </p>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4 text-left">
+                  <p className="text-sm font-medium text-amber-900 mb-2">How far the flow goes</p>
+                  <ul className="text-sm text-amber-800 space-y-1">
+                    <li>✓ Cart total calculated (subtotal + shipping + tax)</li>
+                    <li>✓ Line items built from cart</li>
+                    <li>✓ &quot;Session&quot; created with amount below</li>
+                    <li>✗ No redirect to Stripe (would need a backend + real Stripe key)</li>
+                    <li>✗ No payment is taken</li>
+                  </ul>
+                </div>
                 <div className="bg-gray-50 rounded-lg p-4 mb-6">
                   <p className="text-sm text-gray-600">
                     Session ID: {checkoutSession.id}
@@ -133,9 +140,16 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
                     Amount: ${(checkoutSession.amount_total / 100).toFixed(2)} {checkoutSession.currency.toUpperCase()}
                   </p>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+                <button
+                  onClick={onBackToCart}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                >
+                  <IoArrowBack size={20} />
+                  Back to cart
+                </button>
+                <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mt-6">
                   <IoShield size={16} />
-                  <span>Secure checkout powered by Stripe</span>
+                  <span>Secure checkout powered by Stripe (when wired to a backend)</span>
                 </div>
               </div>
             </div>
@@ -149,7 +163,7 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
       
-      <div className="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+      <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
@@ -184,15 +198,15 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
               <div className="space-y-3">
                 {state.items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center">
+                  <div key={item.product.id} className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
-                      <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                      <img src={item.product.imageUrl} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                       <div>
-                        <p className="font-medium text-gray-900">{item.name}</p>
+                        <p className="font-medium text-gray-900">{item.product.title}</p>
                         <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                       </div>
                     </div>
-                    <p className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)} CAD</p>
+                    <p className="font-medium text-gray-900">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
                   </div>
                 ))}
               </div>

@@ -2,17 +2,27 @@ import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { IoCart } from "react-icons/io5";
 
-export default function Merch() {
-  const { addItem } = useCart();
+const vinylProduct = {
+  id: 101,
+  title: "Even Lines - Limited Edition Vinyl",
+  price: 30,
+  imageUrl: "/albums/vinyl.jpg",
+};
+const tshirtProduct = {
+  id: 102,
+  title: "Even Lines T-Shirt",
+  price: 25,
+  imageUrl: "/albums/shirt.png",
+};
+const posterProduct = {
+  id: 103,
+  title: "Even Lines Poster",
+  price: 15,
+  imageUrl: "/albums/EL.jpg",
+};
 
-  const handleAddToCart = () => {
-    addItem({
-      id: "even-lines-vinyl",
-      name: "Even Lines - Limited Edition Vinyl",
-      price: 30,
-      image: "/albums/vinyl.jpg",
-    });
-  };
+export default function Merch() {
+  const { addToCart } = useCart();
 
   return (
     <div className="space-y-8">
@@ -41,7 +51,7 @@ export default function Merch() {
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={handleAddToCart}
+                  onClick={() => addToCart(vinylProduct)}
                   className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <IoCart size={20} />
@@ -90,12 +100,7 @@ export default function Merch() {
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => addItem({
-                    id: "even-lines-tshirt",
-                    name: "Even Lines T-Shirt",
-                    price: 25,
-                    image: "/albums/shirt.png",
-                  })}
+                  onClick={() => addToCart(tshirtProduct)}
                   className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <IoCart size={20} />
@@ -136,12 +141,7 @@ export default function Merch() {
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => addItem({
-                    id: "even-lines-poster",
-                    name: "Even Lines Poster",
-                    price: 15,
-                    image: "/albums/EL.jpg",
-                  })}
+                  onClick={() => addToCart(posterProduct)}
                   className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <IoCart size={20} />

@@ -44,12 +44,12 @@ export default function AlbumBlurb({ blurbBackground, blurb }: AlbumBlurbProps) 
         <div className="grid place-items-center w-full h-full">
           <div className="relative w-full max-w-2xl">
             {/* Invisible text to establish container size and position */}
-            <div className="invisible text-black text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
+            <div className="invisible text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
               {blurb}
             </div>
             
             {/* Visible animated text positioned absolutely */}
-            <div className="absolute inset-0 text-black text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
+            <div className="absolute inset-0 text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
               {displayedText}
               <span className="animate-pulse text-gray-600">|</span>
             </div>

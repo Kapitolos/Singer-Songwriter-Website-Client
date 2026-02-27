@@ -2,12 +2,12 @@ const albums = [
     {
       id: 1,
       title: "Lakeview",
-      imageUrl: "/albums/Lakeview.jpg", // Use the correct filename
-      previewUrl: "/albums/Nothing.mp3", // Add audio if available
+      imageUrl: "/albums/Lakeview.jpg",
+      previewUrl: "/albums/Nothing.mp3",
       blurbBackground: "/albums/banner3.jpg",
-      blurb: "Lakeview was recorded in about a day in my apartment building of the same name in Parkdale Toronto. Originally intended as a demo, a friend enouraged me to keep what I had so as not to lose the vibe. It's got plenty of blemishes in every department but I'm glad I listened to my friend.",
-      spotifyUrl: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-      bandcampUrl: "https://thomasmatthewgibson.bandcamp.com/album/lakeview",
+      blurb: "Lakeview was recorded in about a day in an apartment building of the same name in Parkdale Toronto. The windows faced brick walls and the guitars creaked like the floor.",
+      spotifyEmbedAlbumId: "0ayGfoZ0gJbv4pzoTfZhCe",
+      artworkImages: ["/albums/Lakeview.jpg", "/albums/lakealt700.jpg", "/albums/banner3700.jpg"],
     },
     {
       id: 2,
@@ -15,9 +15,9 @@ const albums = [
       imageUrl: "/albums/TSNMG.jpg",
       previewUrl: "/albums/LA.mp3",
       blurbBackground: "/albums/cottage.jpg",
-      blurb: "While the instrumentals were worked out over the course of the previous year, the vocals were written and recorded over the course of two weeks in isolation on the south shore of Nova Scotia during the pandemic in 2021. I would wake up with the sun, start a fire, and work until nightfall. I didn't want it to end.",
-      spotifyUrl: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-      bandcampUrl: "https://thomasmatthewgibson.bandcamp.com/album/to-say-no-more-goodbyes",
+      blurb: "While the instrumentals were worked out over the course of the previous year, the vocals were written and recorded over the course of two weeks in isolation on the south shore of Nova Scotia during the pandemic in 2021. Days spent waking up with the sun, starting a fire, and work until nightfall, with only the loons for company.",
+      spotifyEmbedAlbumId: "3AxeZTmYkOR9gIe4oSRcUZ",
+      artworkImages: ["/albums/TSNMG.jpg", "/albums/fire700.jpg", "/albums/sky700.jpg", "/albums/stars700.jpg"],
     },
     {
       id: 3,
@@ -25,9 +25,9 @@ const albums = [
       imageUrl: "/albums/HMHN.jpg",
       previewUrl: "/albums/Room.mp3",
       blurbBackground: "/albums/2.jpg",
-      blurb: "Yet another lockdown led to yet another outlet. This time I wanted some rock and roll and these songs just poured out in a matter of days. A messy recording yet again but a vibe I'm proud of all the same.",
-      spotifyUrl: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-      bandcampUrl: "https://thomasmatthewgibson.bandcamp.com/album/hello-mary-hello-nothing",
+      blurb: "Yet another lockdown led to yet another outlet. Rock and roll that poured out in a matter of days. Recorded at home in the winter of 2021.",
+      spotifyEmbedAlbumId: "3Ua6hLu6ScyT71PAxLnAmp",
+      artworkImages: ["/albums/HMHN.jpg"],
     },
     {
         id: 4,
@@ -35,9 +35,9 @@ const albums = [
         imageUrl: "/albums/Crossing.jpg",
         previewUrl: "/albums/Crossing.mp3",
         blurbBackground: "/albums/stars.jpg",
-        blurb: "This is in fact the oldest of all of these recordings. I lost my uncle and a very old friend in close succession and with both passings I didn't have much of an outlet other than picking up my guitar.",
-        spotifyUrl: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-        bandcampUrl: "https://thomasmatthewgibson.bandcamp.com/album/crossing",
+        blurb: "The oldest of all of these recordings. The loss of an Uncle and childhood friend in close succession were both met with the same outlet: picking up a guitar. Both tracks written and recorded on their respective days.",
+        spotifyEmbedAlbumId: "2ZAjEEBFrbs9FujRV67587",
+        artworkImages: ["/albums/Crossing.jpg"],
       },
       {
         id: 5,
@@ -45,9 +45,9 @@ const albums = [
         imageUrl: "/albums/EL.jpg",
         previewUrl: "/albums/Remains.mp3",
         blurbBackground: "/albums/baby.jpg",
-        blurb: "The big one. Finally got to a studio and decided I needed to get loud. The quiet moments still find their place, but I guess I needed to do something different. Drums were recorded by Jesse Turnball not five minutes after hearing most songs for the first time. His work both at the kit and engineering helm were invaluable in making this record possible.",
-        spotifyUrl: "https://open.spotify.com/artist/5YBhQGrVd7HtLkJSwAoE4W?si=_x8JSSXBQQ6qpLr0pDELWA",
-        bandcampUrl: "https://thomasmatthewgibson.bandcamp.com/album/even-lines",
+        blurb: "Recorded at Taurus sound from October 9-13th 2023. 11 tracks ranging from alt rock to indie folk, pressed on vinyl with exclusive artwork.",
+        spotifyEmbedAlbumId: "16TLdrAhtCtuqhPVq2LR7E",
+        artworkImages: ["/albums/EL.jpg"],
       }
   ];
   

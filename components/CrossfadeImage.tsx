@@ -28,7 +28,7 @@ export default function CrossfadeImage() {
 
   return (
     <div className="flex justify-center">
-      <div className="relative w-full max-w-[31.5rem] mx-auto bg-white rounded-full p-4">
+      <div className="relative w-full max-w-[31.5rem] mx-auto bg-white rounded-full p-4 border-2 border-black">
         <div className="relative w-full aspect-square rounded-full overflow-hidden">
           {images.map((image, index) => (
             <img

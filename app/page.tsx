@@ -40,8 +40,10 @@ export default function Home() {
         );
       case "releases":
         return (
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
-            <Carousel albums={albums} />
+          <div className="bg-black rounded-2xl p-4 md:p-6">
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+              <Carousel albums={albums} />
+            </div>
           </div>
         );
       case "merch":
@@ -59,7 +61,7 @@ export default function Home() {
     <AuthProvider>
       <CartProvider>
         <div className="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 relative">
-          {activeSection === "home" && <LyricsBackground />}
+          <LyricsBackground />
           <div className="relative z-10">
             <Navbar activeSection={activeSection} onSectionChange={setActiveSection} />
             <main className="container mx-auto px-4 py-8 max-w-6xl">

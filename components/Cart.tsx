@@ -6,7 +6,7 @@ import { IoClose, IoAdd, IoRemove, IoTrash } from 'react-icons/io5';
 import StripeCheckout from './StripeCheckout';
 
 export default function Cart() {
-  const { state, closeCart, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
+  const { state, closeCart, removeFromCart, updateQuantity, clearCart } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
 
   if (!state.isOpen) return null;
@@ -24,7 +24,7 @@ export default function Cart() {
           />
           
           {/* Cart Panel */}
-                                                                 <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+                                                                 <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
@@ -52,19 +52,19 @@ export default function Cart() {
                 ) : (
                   <div className="space-y-4">
                     {state.items.map((item) => (
-                      <div key={item.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                      <div key={item.product.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
                         <img
-                          src={item.image}
-                          alt={item.name}
+                          src={item.product.imageUrl}
+                          alt={item.product.title}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-sm font-medium text-gray-900 truncate">{item.name}</h3>
-                          <p className="text-sm text-gray-500">${item.price} CAD</p>
+                          <h3 className="text-sm font-medium text-gray-900 truncate">{item.product.title}</h3>
+                          <p className="text-sm text-gray-500">${item.product.price} CAD</p>
                         </div>
                         <div className="flex items-center space-x-2">
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                             className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
                           >
                             <IoRemove size={16} />
@@ -73,14 +73,14 @@ export default function Cart() {
                             {item.quantity}
                           </span>
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                             className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
                           >
                             <IoAdd size={16} />
                           </button>
                         </div>
                         <button
-                          onClick={() => removeItem(item.id)}
+                          onClick={() => removeFromCart(item.product.id)}
                           className="p-1 text-red-400 hover:text-red-600 transition-colors"
                         >
                           <IoTrash size={16} />
@@ -96,7 +96,7 @@ export default function Cart() {
                 <div className="border-t border-gray-200 p-6 space-y-4">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>${getTotalPrice()} CAD</p>
+                    <p>${state.totalPrice.toFixed(2)} CAD</p>
                   </div>
                   <p className="text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                   

@@ -25,6 +25,11 @@ body {
   font-size: 1.125rem;
 }
 
+/* Professional serif font for cart and checkout only */
+.font-cart-checkout {
+  font-family: var(--font-playfair-display), "Playfair Display", serif !important;
+}
+
 /* Increase font size for text content without affecting layout */
 p, span, a, li, td, th, label {
   font-size: 1.125rem;
@@ -155,10 +160,10 @@ html {
   transition-duration: 2000ms;
 }
 
-/* Panning animations for lyrics background */
+/* Panning animations for lyrics background (start 15% in from edge) */
 @keyframes pan-right {
   from {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% + 15vw));
   }
   to {
     transform: translateX(100vw);
@@ -167,7 +172,7 @@ html {
 
 @keyframes pan-left {
   from {
-    transform: translateX(100vw);
+    transform: translateX(calc(100vw - 15vw));
   }
   to {
     transform: translateX(-100%);
@@ -182,4 +187,57 @@ html {
   animation: pan-left linear infinite;
 }
 
+/* Override Tailwind text-lg and text-4xl font sizes */
+.text-lg,
+p.text-lg,
+div.text-lg,
+span.text-lg,
+h1.text-lg,
+h2.text-lg,
+h3.text-lg,
+h4.text-lg,
+h5.text-lg,
+h6.text-lg {
+  font-size: 2.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+.text-2xl {
+  font-size: 2.5rem;
+  line-height: 2rem;
+}
+
+.text-4xl,
+p.text-4xl,
+div.text-4xl,
+span.text-4xl,
+h1.text-4xl,
+h2.text-4xl,
+h3.text-4xl,
+h4.text-4xl,
+h5.text-4xl,
+h6.text-4xl {
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+}
+
+.text-xl {
+  font-size: 2.25rem;
+  line-height: 1.75rem;
+}
+
+p, span, a, li, td, th, label {
+  font-size: 2.125rem;
+}
+
+/* Increase navbar tab font size by 1rem - isolated to navbar only */
+/* text-sm in Tailwind is 0.875rem, so 0.875rem + 1rem = 1.875rem */
+/* text-base in Tailwind is 1rem, so 1rem + 1rem = 2rem */
+nav button.text-sm {
+  font-size: 1.875rem !important; /* 0.875rem + 1rem */
+}
+
+nav button.text-base {
+  font-size: 2rem !important; /* 1rem + 1rem */
+}
 
