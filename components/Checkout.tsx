@@ -29,7 +29,7 @@ interface CheckoutProps {
 }
 
 export default function Checkout({ onBackToCart }: CheckoutProps) {
-  const { state, closeCart, getTotalPrice } = useCart();
+  const { state, closeCart } = useCart();
   const { state: authState } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
@@ -52,7 +52,7 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
 
-  const totalPrice = getTotalPrice();
+  const totalPrice = state.totalPrice;
   const shippingCost = 15; // Fixed shipping cost
   const taxRate = 0.15; // 15% tax rate
   const taxAmount = totalPrice * taxRate;
@@ -342,15 +342,15 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
         <div className="space-y-3">
           {state.items.map((item) => (
-            <div key={item.id} className="flex justify-between items-center">
+            <div key={item.product.id} className="flex justify-between items-center">
               <div className="flex items-center space-x-3">
-                <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                <img src={item.product.imageUrl} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                 <div>
-                  <p className="font-medium text-gray-900">{item.name}</p>
+                  <p className="font-medium text-gray-900">{item.product.title}</p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                 </div>
               </div>
-              <p className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)} CAD</p>
+              <p className="font-medium text-gray-900">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
             </div>
           ))}
         </div>

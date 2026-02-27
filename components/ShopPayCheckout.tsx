@@ -10,12 +10,12 @@ interface ShopPayCheckoutProps {
 }
 
 export default function ShopPayCheckout({ onBackToCart }: ShopPayCheckoutProps) {
-  const { state, closeCart, getTotalPrice } = useCart();
+  const { state, closeCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const totalPrice = getTotalPrice();
+  const totalPrice = state.totalPrice;
   const shippingCost = 15; // Fixed shipping cost
   const taxRate = 0.15; // 15% tax rate
   const taxAmount = totalPrice * taxRate;
@@ -23,17 +23,14 @@ export default function ShopPayCheckout({ onBackToCart }: ShopPayCheckoutProps) 
 
   // Convert cart items to Shopify line items
   const getShopifyLineItems = () => {
-    return state.items.map(item => {
-      const product = productConfig.variants.find(v => v.id === item.id);
-      return {
-        variant_id: product?.id || item.id,
-        quantity: item.quantity,
-        properties: {
-          _custom_name: item.name,
-          _custom_image: item.image
-        }
-      };
-    });
+    return state.items.map(item => ({
+      variant_id: item.product.id,
+      quantity: item.quantity,
+      properties: {
+        _custom_name: item.product.title,
+        _custom_image: item.product.imageUrl
+      }
+    }));
   };
 
   // Create Shopify checkout
@@ -172,15 +169,15 @@ export default function ShopPayCheckout({ onBackToCart }: ShopPayCheckoutProps) 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
               <div className="space-y-3">
                 {state.items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center">
+                  <div key={item.product.id} className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
-                      <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                      <img src={item.product.imageUrl} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                       <div>
-                        <p className="font-medium text-gray-900">{item.name}</p>
+                        <p className="font-medium text-gray-900">{item.product.title}</p>
                         <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                       </div>
                     </div>
-                    <p className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)} CAD</p>
+                    <p className="font-medium text-gray-900">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
                   </div>
                 ))}
               </div>

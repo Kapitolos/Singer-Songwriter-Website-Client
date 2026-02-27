@@ -1,3 +1,13 @@
+// Shopify configuration (placeholder for Shop Pay)
+export const shopifyConfig = {
+  storefrontAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || '',
+  domain: process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || '',
+  shopPay: {
+    installments: false,
+    branding: '' as string,
+  },
+};
+
 // Stripe configuration for payments
 export const stripeConfig = {
   // Your Stripe publishable key
