@@ -13,7 +13,7 @@ const tshirtProduct = {
   id: 102,
   title: "Even Lines T-Shirt",
   price: 25,
-  imageUrl: "/albums/shirt.png",
+  imageUrl: "/albums/EL.jpg", // Use EL.jpg until shirt.png is added to repo (for GitHub Pages)
 };
 const posterProduct = {
   id: 103,
@@ -81,7 +81,7 @@ export default function Merch() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
-              src={assetPath("/albums/shirt.png")} 
+              src={assetPath("/albums/EL.jpg")} 
               alt="Even Lines T-Shirt" 
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
             />
