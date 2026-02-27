@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
+import { assetPath } from "../utils/assetPath";
 
 type AudioPlayerProps = {
   previewUrl: string;
@@ -22,7 +23,7 @@ export default function AudioPlayer({ previewUrl, albumTitle }: AudioPlayerProps
 
     if (audioRef.current) {
       audioRef.current.pause();
-      audioRef.current.src = validPreviewUrl;
+      audioRef.current.src = assetPath(validPreviewUrl);
       audioRef.current.load(); // Ensure browser reloads the new source
       setIsPlaying(false);
       setCurrentTime(0);

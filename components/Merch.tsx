@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { IoCart } from "react-icons/io5";
+import { assetPath } from "../utils/assetPath";
 
 const vinylProduct = {
   id: 101,
@@ -80,7 +81,7 @@ export default function Merch() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
-              src="/albums/shirt.png" 
+              src={assetPath("/albums/shirt.png")} 
               alt="Even Lines T-Shirt" 
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
             />
@@ -121,7 +122,7 @@ export default function Merch() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
-              src="/albums/EL.jpg" 
+              src={assetPath("/albums/EL.jpg")} 
               alt="Even Lines Poster" 
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
             />

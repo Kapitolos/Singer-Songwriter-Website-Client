@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useCart } from "../contexts/CartContext";
 import { IoCart } from "react-icons/io5";
+import { assetPath } from "../utils/assetPath";
 
 type NavbarProps = {
   activeSection: string;
@@ -23,7 +24,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
 
   return (
          <nav className="bg-white shadow-lg border-b border-amber-100 sticky top-0 z-50 relative" style={{
-           backgroundImage: "url('/albums/MyBlueSkiesSingle.jpg')",
+           backgroundImage: `url('${assetPath("/albums/MyBlueSkiesSingle.jpg")}')`,
            backgroundSize: "cover",
            backgroundPosition: "center",
            backgroundRepeat: "no-repeat"

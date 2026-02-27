@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
 import { IoClose, IoAdd, IoRemove, IoTrash } from 'react-icons/io5';
 import StripeCheckout from './StripeCheckout';
+import { assetPath } from '../utils/assetPath';
 
 export default function Cart() {
   const { state, closeCart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -54,7 +55,7 @@ export default function Cart() {
                     {state.items.map((item) => (
                       <div key={item.product.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
                         <img
-                          src={item.product.imageUrl}
+                          src={assetPath(item.product.imageUrl)}
                           alt={item.product.title}
                           className="w-16 h-16 object-cover rounded-md"
                         />

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import { assetPath } from '../utils/assetPath';
 import { IoArrowBack, IoArrowForward, IoLocation, IoCard, IoCheckmarkCircle, IoPerson } from 'react-icons/io5';
 
 interface ShippingInfo {
@@ -344,7 +345,7 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
           {state.items.map((item) => (
             <div key={item.product.id} className="flex justify-between items-center">
               <div className="flex items-center space-x-3">
-                <img src={item.product.imageUrl} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
+                <img src={assetPath(item.product.imageUrl)} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                 <div>
                   <p className="font-medium text-gray-900">{item.product.title}</p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>

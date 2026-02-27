@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { assetPath } from "../utils/assetPath";
 
 const images = [
   "/albums/Tub.jpg",
@@ -33,7 +34,7 @@ export default function CrossfadeImage() {
           {images.map((image, index) => (
             <img
               key={image}
-              src={image}
+              src={assetPath(image)}
               alt={`Image ${index + 1}`}
               className={`absolute inset-0 w-full h-full object-cover rounded-full transition-opacity duration-2000 ${
                 index === currentIndex && fade ? "opacity-100" : "opacity-0"

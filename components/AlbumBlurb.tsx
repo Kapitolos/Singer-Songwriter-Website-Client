@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { assetPath } from "../utils/assetPath";
 
 type AlbumBlurbProps = {
   blurbBackground: string;
@@ -31,7 +32,7 @@ export default function AlbumBlurb({ blurbBackground, blurb }: AlbumBlurbProps) 
     <div className="relative w-full h-full rounded-xl overflow-hidden">
       {/* Background Image */}
       <img 
-        src={blurbBackground} 
+        src={assetPath(blurbBackground)} 
         alt="Album Background" 
         className="w-full h-full object-cover"
       />

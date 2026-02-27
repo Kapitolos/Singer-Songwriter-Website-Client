@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AudioPlayer from "./AudioPlayer";
 import AlbumBlurb from "./AlbumBlurb";
+import { assetPath } from "../utils/assetPath";
 
 type Album = {
   id: number;
@@ -123,7 +124,7 @@ export default function Carousel({ albums }: CarouselProps) {
                   {/* Left side - Artwork (single or crossfade) or Spotify embed */}
                   <div className="lg:w-1/2 flex items-center justify-center p-4">
                     {album.artworkImages?.length ? (
-                      <ArtworkCrossfade images={album.artworkImages} albumTitle={album.title} />
+                      <ArtworkCrossfade images={album.artworkImages.map(assetPath)} albumTitle={album.title} />
                     ) : album.spotifyEmbedAlbumId ? (
                       <iframe
                         style={{ borderRadius: "12px" }}
@@ -138,7 +139,7 @@ export default function Carousel({ albums }: CarouselProps) {
                       />
                     ) : (
                       <img
-                        src={album.imageUrl}
+                        src={assetPath(album.imageUrl)}
                         alt={album.title}
                         className="max-w-full max-h-full object-contain"
                       />
@@ -149,7 +150,7 @@ export default function Carousel({ albums }: CarouselProps) {
                   <div className="lg:w-1/2 h-full relative p-4">
                     <AlbumBlurb 
                       key={`${album.id}-${currentSlideIndex}`}
-                      blurbBackground={album.blurbBackground} 
+                      blurbBackground={assetPath(album.blurbBackground)} 
                       blurb={album.blurb} 
                     />
                   </div>

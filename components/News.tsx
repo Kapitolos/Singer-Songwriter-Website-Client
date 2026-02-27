@@ -3,6 +3,7 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { IoCart } from "react-icons/io5";
+import { assetPath } from "../utils/assetPath";
 
 const vinylProduct = {
   id: 101,
@@ -105,7 +106,7 @@ export default function News() {
                 <div className="text-sm text-gray-500 font-medium mb-3">{item.date}</div>
                 {item.imageUrl && (
                   <img 
-                    src={item.imageUrl} 
+                    src={assetPath(item.imageUrl)} 
                     alt={item.title}
                     className="w-24 h-24 object-cover rounded-lg shadow-md"
                   />
