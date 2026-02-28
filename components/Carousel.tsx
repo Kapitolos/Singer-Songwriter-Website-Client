@@ -90,11 +90,19 @@ export default function Carousel({ albums }: CarouselProps) {
   const [currentBandcampUrl, setCurrentBandcampUrl] = useState(albums[0]?.bandcampUrl || "");
   const [currentSpotifyEmbedId, setCurrentSpotifyEmbedId] = useState(albums[0]?.spotifyEmbedAlbumId || "");
 
+  const [centerPadding, setCenterPadding] = useState("60px");
+  useEffect(() => {
+    const update = () => setCenterPadding(window.innerWidth < 768 ? "8px" : "60px");
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const settings = {
     className: "center",
     centerMode: true,
     infinite: true,
-    centerPadding: "60px",
+    centerPadding,
     slidesToShow: 1,
     speed: 500,
     afterChange: (index: number) => {
@@ -115,14 +123,14 @@ export default function Carousel({ albums }: CarouselProps) {
       <div className="mb-8">
         <Slider {...settings}>
           {albums.map((album, index) => (
-            <div key={album.id} className="px-2">
+            <div key={album.id} className="px-0 md:px-2">
               <div
-                className="rounded-xl shadow-lg overflow-hidden bg-white border-0"
+                className="rounded-none md:rounded-xl shadow-none md:shadow-lg overflow-hidden bg-white border-0"
                 style={{ height: '400px' }}
               >
                 <div className="flex flex-col lg:flex-row h-full">
                   {/* Left side - Artwork (single or crossfade) or Spotify embed */}
-                  <div className="lg:w-1/2 flex items-center justify-center p-4">
+                  <div className="lg:w-1/2 flex items-center justify-center p-2 md:p-4">
                     {album.artworkImages?.length ? (
                       <ArtworkCrossfade images={album.artworkImages.map(assetPath)} albumTitle={album.title} />
                     ) : album.spotifyEmbedAlbumId ? (
@@ -147,7 +155,7 @@ export default function Carousel({ albums }: CarouselProps) {
                   </div>
                   
                   {/* Right side - Blurb */}
-                  <div className="lg:w-1/2 h-full relative p-4">
+                  <div className="lg:w-1/2 h-full relative p-2 md:p-4">
                     <AlbumBlurb 
                       key={`${album.id}-${currentSlideIndex}`}
                       blurbBackground={assetPath(album.blurbBackground)} 
@@ -163,7 +171,7 @@ export default function Carousel({ albums }: CarouselProps) {
 
       {/* For albums with embed below (e.g. TSNMG): show Spotify embed */}
       {currentSpotifyEmbedId && albums[currentSlideIndex]?.artworkImages?.length ? (
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6 px-0 md:px-4">
           <div className="w-full max-w-lg">
             <iframe
               style={{ borderRadius: "12px" }}

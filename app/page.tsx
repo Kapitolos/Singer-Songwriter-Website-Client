@@ -40,8 +40,8 @@ export default function Home() {
         );
       case "releases":
         return (
-          <div className="bg-black rounded-2xl p-4 md:p-6">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+          <div className="bg-black rounded-none md:rounded-2xl p-0 md:p-6">
+            <div className="bg-white rounded-none md:rounded-2xl shadow-none md:shadow-xl p-3 md:p-8 border-0 md:border md:border-amber-100">
               <Carousel albums={albums} />
             </div>
           </div>

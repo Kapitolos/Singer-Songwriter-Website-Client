@@ -31,14 +31,14 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
          }}>
       <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex justify-between items-center h-32">
+        <div className="flex justify-between items-center h-20 md:h-32">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={`px-4 py-2.5 rounded-md text-sm font-medium transition-colors duration-200 ${
                   activeSection === item.id
                     ? "bg-black text-white"
                     : "text-white hover:text-white hover:bg-black hover:bg-opacity-50 drop-shadow-lg"
@@ -103,7 +103,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                     onSectionChange(item.id);
                     setIsMobileMenuOpen(false);
                   }}
-                                     className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                                     className={`block w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
                      activeSection === item.id
                        ? "bg-white bg-opacity-20 text-white"
                        : "text-white hover:text-white hover:bg-white hover:bg-opacity-20"
