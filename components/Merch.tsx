@@ -28,7 +28,7 @@ export default function Merch() {
   return (
     <div className="space-y-8">
       {/* Even Lines Vinyl */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+      <div className="rounded-2xl border border-neutral-600 bg-neutral-800/80 p-8 shadow-xl">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
@@ -39,21 +39,21 @@ export default function Merch() {
           </div>
           
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-2xl font-semibold text-black mb-4">Even Lines - Limited Edition Vinyl</h3>
-            <p className="text-gray-700 mb-6">
+            <h3 className="mb-4 text-2xl font-semibold font-heading text-heading">Even Lines - Limited Edition Vinyl</h3>
+            <p className="mb-6 text-neutral-300">
               The big one. Finally got to a studio and decided I needed to get loud. The quiet moments still find their place, but I guess I needed to do something different. Drums were recorded by Jesse Turnball not five minutes after hearing most songs for the first time.
             </p>
             
             <div className="space-y-4">
               <div className="flex items-center justify-center lg:justify-start gap-4">
-                <span className="text-2xl font-bold text-black">$30 CAD</span>
-                <span className="text-sm text-gray-500">+ shipping</span>
+                <span className="text-2xl font-bold text-neutral-100">$30 CAD</span>
+                <span className="text-sm text-neutral-400">+ shipping</span>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => addToCart(vinylProduct)}
-                  className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white sm:w-auto"
                 >
                   <IoCart size={20} />
                   Add to Cart
@@ -62,13 +62,13 @@ export default function Merch() {
                   href="https://thomasmatthewgibson.bandcamp.com/album/even-lines"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-center"
+                  className="w-full rounded-lg bg-neutral-100 px-8 py-3 text-center font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white sm:w-auto"
                 >
                   Buy on Bandcamp
                 </a>
               </div>
               
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-400">
                 Limited edition of 25 • Ships within 3 days • Includes digital download
               </p>
             </div>
@@ -77,7 +77,7 @@ export default function Merch() {
       </div>
 
       {/* T-Shirt */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+      <div className="rounded-2xl border border-neutral-600 bg-neutral-800/80 p-8 shadow-xl">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
@@ -88,28 +88,28 @@ export default function Merch() {
           </div>
           
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-2xl font-semibold text-black mb-4">Even Lines T-Shirt</h3>
-            <p className="text-gray-700 mb-6">
+            <h3 className="mb-4 text-2xl font-semibold font-heading text-heading">Even Lines T-Shirt</h3>
+            <p className="mb-6 text-neutral-300">
               High-quality cotton t-shirt featuring the Even Lines album artwork. Perfect for showing your support and staying comfortable.
             </p>
             
             <div className="space-y-4">
               <div className="flex items-center justify-center lg:justify-start gap-4">
-                <span className="text-2xl font-bold text-black">$25 CAD</span>
-                <span className="text-sm text-gray-500">+ shipping</span>
+                <span className="text-2xl font-bold text-neutral-100">$25 CAD</span>
+                <span className="text-sm text-neutral-400">+ shipping</span>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => addToCart(tshirtProduct)}
-                  className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white sm:w-auto"
                 >
                   <IoCart size={20} />
                   Add to Cart
                 </button>
               </div>
               
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-400">
                 Available in S, M, L, XL • Ships within 3 days
               </p>
             </div>
@@ -118,7 +118,7 @@ export default function Merch() {
       </div>
 
       {/* Poster */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+      <div className="rounded-2xl border border-neutral-600 bg-neutral-800/80 p-8 shadow-xl">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           <div className="lg:w-1/2">
             <img 
@@ -129,28 +129,28 @@ export default function Merch() {
           </div>
           
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-2xl font-semibold text-black mb-4">Even Lines Poster</h3>
-            <p className="text-gray-700 mb-6">
+            <h3 className="mb-4 text-2xl font-semibold font-heading text-heading">Even Lines Poster</h3>
+            <p className="mb-6 text-neutral-300">
               Beautiful high-quality poster featuring the Even Lines album cover. Perfect for decorating your space with some great music art.
             </p>
             
             <div className="space-y-4">
               <div className="flex items-center justify-center lg:justify-start gap-4">
-                <span className="text-2xl font-bold text-black">$15 CAD</span>
-                <span className="text-sm text-gray-500">+ shipping</span>
+                <span className="text-2xl font-bold text-neutral-100">$15 CAD</span>
+                <span className="text-sm text-neutral-400">+ shipping</span>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => addToCart(posterProduct)}
-                  className="w-full sm:w-auto px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white sm:w-auto"
                 >
                   <IoCart size={20} />
                   Add to Cart
                 </button>
               </div>
               
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-400">
                 18" x 24" • Ships within 3 days
               </p>
             </div>

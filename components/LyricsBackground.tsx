@@ -39,10 +39,11 @@ export default function LyricsBackground() {
         return (
           <div
             key={index}
-            className="absolute whitespace-nowrap text-gray-700 opacity-[0.12]"
+            className="absolute whitespace-nowrap text-neutral-200 opacity-[0.08]"
             style={{
               top: `${topPosition}%`,
               fontSize: '2.5rem',
+              fontFamily: 'var(--font-aguafina-script), "Aguafina Script", cursive',
               animation: isLeft 
                 ? `pan-left ${duration}s linear 0s infinite`
                 : `pan-right ${duration}s linear 0s infinite`,

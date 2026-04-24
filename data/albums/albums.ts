@@ -7,7 +7,7 @@ const albums = [
       blurbBackground: "/albums/banner3.jpg",
       blurb: "Lakeview was recorded in about a day in an apartment building of the same name in Parkdale Toronto. The windows faced brick walls and the guitars creaked like the floor.",
       spotifyEmbedAlbumId: "0ayGfoZ0gJbv4pzoTfZhCe",
-      artworkImages: ["/albums/Lakeview.jpg", "/albums/lakealt700.jpg", "/albums/banner3700.jpg"],
+      artworkImages: ["/albums/Lakeview.jpg", "/albums/banner3700.jpg"],
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ const albums = [
       blurbBackground: "/albums/cottage.jpg",
       blurb: "While the instrumentals were worked out over the course of the previous year, the vocals were written and recorded over the course of two weeks in isolation on the south shore of Nova Scotia during the pandemic in 2021. Days spent waking up with the sun, starting a fire, and work until nightfall, with only the loons for company.",
       spotifyEmbedAlbumId: "3AxeZTmYkOR9gIe4oSRcUZ",
-      artworkImages: ["/albums/TSNMG.jpg", "/albums/fire700.jpg", "/albums/sky700.jpg", "/albums/stars700.jpg"],
+      artworkImages: ["/albums/TSNMG.jpg", "/albums/sky700.jpg"],
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const albums = [
         title: "Crossing",
         imageUrl: "/albums/Crossing.jpg",
         previewUrl: "/albums/Crossing.mp3",
-        blurbBackground: "/albums/stars.jpg",
+        blurbBackground: "/albums/sunset.jpg",
         blurb: "The oldest of all of these recordings. The loss of an Uncle and childhood friend in close succession were both met with the same outlet: picking up a guitar. Both tracks written and recorded on their respective days.",
         spotifyEmbedAlbumId: "2ZAjEEBFrbs9FujRV67587",
         artworkImages: ["/albums/Crossing.jpg"],

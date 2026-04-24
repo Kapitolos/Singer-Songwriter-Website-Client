@@ -10,62 +10,105 @@ import Contact from "../components/Contact";
 import Cart from "../components/Cart";
 import CrossfadeImage from "../components/CrossfadeImage";
 import LyricsBackground from "../components/LyricsBackground";
+import SectionPanel from "../components/SectionPanel";
 import { CartProvider } from "../contexts/CartContext";
 import { AuthProvider } from "../contexts/AuthContext";
 
+function DesktopPlaceholderPanel() {
+  return (
+    <div className="flex min-h-[12rem] flex-col justify-center py-2">
+      <p className="text-sm font-semibold uppercase tracking-wide text-neutral-500 mb-2">
+        Right column
+      </p>
+      <p className="text-lg text-neutral-300 leading-relaxed">
+        Placeholder copy for the desktop home view. Choose a section from the navigation above
+        to show releases, merch, news, or contact here.
+      </p>
+    </div>
+  );
+}
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("releases");
 
-  const renderSection = () => {
+  const homeHero = (
+    <div className="space-y-8 md:space-y-6">
+      <div className="text-center md:text-left mb-8 md:mb-0">
+        <div className="mb-6">
+          <h1 className="text-4xl md:text-5xl">
+            Thomas Matthew Gibson
+          </h1>
+        </div>
+        <p className="text-lg text-neutral-300 max-w-2xl md:max-w-none mx-auto md:mx-0 mb-6 md:mb-0">
+          Singer/Songwriter from Nova Scotia
+        </p>
+      </div>
+      <CrossfadeImage />
+    </div>
+  );
+
+  const renderNonHomeSection = () => {
     switch (activeSection) {
-      case "home":
-        return (
-          <div className="space-y-8">
-            {/* Header Section */}
-            <div className="text-center mb-12">
-              <div className="mb-6">
-                <h1 className="text-4xl md:text-5xl font-bold text-black text-center">
-                  Thomas Matthew Gibson
-                </h1>
-              </div>
-              <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-6">
-                Singer/Songwriter from Nova Scotia
-              </p>
-            </div>
-
-            {/* Crossfade Images */}
-            <CrossfadeImage />
-          </div>
-        );
       case "releases":
         return (
-          <div className="bg-black rounded-none md:rounded-2xl p-0 md:p-6">
-            <div className="bg-white rounded-none md:rounded-2xl shadow-none md:shadow-xl p-3 md:p-8 border-0 md:border md:border-amber-100">
-              <Carousel albums={albums} />
-            </div>
-          </div>
+          <SectionPanel>
+            <Carousel albums={albums} />
+          </SectionPanel>
         );
       case "merch":
-        return <Merch />;
+        return (
+          <SectionPanel>
+            <Merch />
+          </SectionPanel>
+        );
       case "news":
-        return <News />;
+        return (
+          <SectionPanel>
+            <News />
+          </SectionPanel>
+        );
       case "contact":
-        return <Contact />;
+        return (
+          <SectionPanel>
+            <Contact />
+          </SectionPanel>
+        );
       default:
         return null;
     }
   };
 
+  const desktopRightPanel =
+    activeSection === "home" ? (
+      <SectionPanel>
+        <DesktopPlaceholderPanel />
+      </SectionPanel>
+    ) : (
+      renderNonHomeSection()
+    );
+
   return (
     <AuthProvider>
       <CartProvider>
-        <div className="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 relative">
+        <div className="min-h-screen bg-black text-neutral-100 relative">
           <LyricsBackground />
           <div className="relative z-10">
             <Navbar activeSection={activeSection} onSectionChange={setActiveSection} />
-            <main className="container mx-auto px-4 py-8 max-w-6xl">
-              {renderSection()}
+            <main className="container mx-auto px-4 py-8 max-w-6xl md:max-w-7xl md:min-h-[calc(100dvh-11rem)]">
+              {/* Mobile: unchanged — one column, full section switch */}
+              <div className="md:hidden">
+                {activeSection === "home" ? homeHero : renderNonHomeSection()}
+              </div>
+
+              {/* Desktop: fixed row height so right panel matches Releases dimensions; inner scrollbars, not page growth */}
+              <div className="hidden md:grid md:h-[calc(100dvh-11rem)] md:max-h-[calc(100dvh-11rem)] md:grid-cols-[3fr_7fr] md:gap-10 md:items-stretch">
+                <div className="min-h-0 min-w-0 overflow-y-auto overscroll-contain md:pr-1">
+                  {homeHero}
+                </div>
+                <div className="flex min-h-0 min-w-0 flex-col md:h-full md:max-h-full md:pr-1">
+                  {desktopRightPanel}
+                </div>
+              </div>
             </main>
             <Cart />
           </div>

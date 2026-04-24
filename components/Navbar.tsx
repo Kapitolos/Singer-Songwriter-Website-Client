@@ -22,27 +22,24 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
     { id: "contact", label: "Contact" },
   ];
 
+  const desktopNavItems = navItems.filter((item) => item.id !== "home");
+
   return (
-         <nav className="bg-white shadow-lg border-b border-amber-100 sticky top-0 z-50 relative" style={{
-           backgroundImage: `url('${assetPath("/albums/MyBlueSkiesSingle.jpg")}')`,
-           backgroundSize: "cover",
-           backgroundPosition: "center",
-           backgroundRepeat: "no-repeat"
-         }}>
-      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+    <nav className="relative shadow-lg border-b-4 border-white sticky top-0 z-50 bg-black overflow-hidden">
+      <div className="absolute inset-0 bg-black pointer-events-none" />
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-45 pointer-events-none"
+        style={{ backgroundImage: `url(${assetPath("/albums/flowers.png")})` }}
+      />
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex justify-between items-center h-20 md:h-32">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
-            {navItems.map((item) => (
+            {desktopNavItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
-                className={`px-4 py-2.5 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  activeSection === item.id
-                    ? "bg-black text-white"
-                    : "text-white hover:text-white hover:bg-black hover:bg-opacity-50 drop-shadow-lg"
-                }`}
+                className="px-4 py-2.5 rounded-md text-sm font-medium transition-colors duration-200 text-white drop-shadow-lg"
               >
                 {item.label}
               </button>
@@ -95,7 +92,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-black bg-opacity-90 border-t border-amber-100">
+            <div className="space-y-1 border-t border-neutral-600 bg-black/90 px-2 pb-3 pt-2">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -103,11 +100,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
                     onSectionChange(item.id);
                     setIsMobileMenuOpen(false);
                   }}
-                                     className={`block w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
-                     activeSection === item.id
-                       ? "bg-white bg-opacity-20 text-white"
-                       : "text-white hover:text-white hover:bg-white hover:bg-opacity-20"
-                   }`}
+                  className="block w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 text-white hover:text-white hover:bg-white hover:bg-opacity-20"
                 >
                   {item.label}
                 </button>

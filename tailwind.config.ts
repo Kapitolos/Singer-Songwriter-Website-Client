@@ -11,6 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        heading: "var(--heading-color)",
+      },
+      fontFamily: {
+        sans: ["var(--font-playfair-display)", "Playfair Display", "serif"],
+        heading: ["var(--font-anton-sc)", '"Anton SC"', "sans-serif"],
       },
     },
   },

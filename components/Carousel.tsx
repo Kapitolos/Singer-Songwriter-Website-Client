@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,61 +21,6 @@ type Album = {
   artworkImages?: string[];
 };
 
-const CROSSFADE_DURATION_MS = 2500;
-const ARTWORK_INTERVAL_MS = 14000; // ~14s between image changes
-
-function ArtworkCrossfade({ images, albumTitle }: { images: string[]; albumTitle: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  useEffect(() => {
-    if (images.length <= 1) return;
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-        setIsTransitioning(false);
-      }, CROSSFADE_DURATION_MS);
-    }, ARTWORK_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  if (images.length === 0) return null;
-  if (images.length === 1) {
-    return (
-      <img
-        src={images[0]}
-        alt={albumTitle}
-        className="max-w-full max-h-full object-contain w-full h-full object-center"
-      />
-    );
-  }
-
-  const nextIndex = (currentIndex + 1) % images.length;
-  return (
-    <div className="relative w-full h-full min-h-[200px]">
-      <img
-        src={images[currentIndex]}
-        alt=""
-        className={`absolute inset-0 w-full h-full object-contain transition-opacity object-center`}
-        style={{
-          opacity: isTransitioning ? 0 : 1,
-          transitionDuration: `${CROSSFADE_DURATION_MS}ms`,
-        }}
-      />
-      <img
-        src={images[nextIndex]}
-        alt=""
-        className={`absolute inset-0 w-full h-full object-contain transition-opacity object-center`}
-        style={{
-          opacity: isTransitioning ? 1 : 0,
-          transitionDuration: `${CROSSFADE_DURATION_MS}ms`,
-        }}
-      />
-    </div>
-  );
-}
-
 type CarouselProps = {
   albums: Album[];
 };
@@ -90,19 +35,11 @@ export default function Carousel({ albums }: CarouselProps) {
   const [currentBandcampUrl, setCurrentBandcampUrl] = useState(albums[0]?.bandcampUrl || "");
   const [currentSpotifyEmbedId, setCurrentSpotifyEmbedId] = useState(albums[0]?.spotifyEmbedAlbumId || "");
 
-  const [centerPadding, setCenterPadding] = useState("60px");
-  useEffect(() => {
-    const update = () => setCenterPadding(window.innerWidth < 768 ? "8px" : "60px");
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
   const settings = {
     className: "center",
-    centerMode: true,
+    centerMode: false,
     infinite: true,
-    centerPadding,
+    centerPadding: "0px",
     slidesToShow: 1,
     speed: 500,
     afterChange: (index: number) => {
@@ -125,14 +62,18 @@ export default function Carousel({ albums }: CarouselProps) {
           {albums.map((album, index) => (
             <div key={album.id} className="px-0 md:px-2">
               <div
-                className="rounded-none md:rounded-xl shadow-none md:shadow-lg overflow-hidden bg-white border-0"
-                style={{ height: '400px' }}
+                className="overflow-hidden rounded-none border-0 bg-neutral-900 shadow-none md:rounded-xl md:shadow-lg"
+                style={{ height: "460px" }}
               >
                 <div className="flex flex-col lg:flex-row h-full">
                   {/* Left side - Artwork (single or crossfade) or Spotify embed */}
-                  <div className="lg:w-1/2 flex items-center justify-center p-2 md:p-4">
+                  <div className="h-1/2 lg:h-full lg:w-1/2 flex items-center justify-center p-2 md:p-4">
                     {album.artworkImages?.length ? (
-                      <ArtworkCrossfade images={album.artworkImages.map(assetPath)} albumTitle={album.title} />
+                      <img
+                        src={assetPath(album.artworkImages[0])}
+                        alt={album.title}
+                        className="max-w-full max-h-full object-contain w-full h-full object-center"
+                      />
                     ) : album.spotifyEmbedAlbumId ? (
                       <iframe
                         style={{ borderRadius: "12px" }}
@@ -155,12 +96,15 @@ export default function Carousel({ albums }: CarouselProps) {
                   </div>
                   
                   {/* Right side - Blurb */}
-                  <div className="lg:w-1/2 h-full relative p-2 md:p-4">
-                    <AlbumBlurb 
-                      key={`${album.id}-${currentSlideIndex}`}
-                      blurbBackground={assetPath(album.blurbBackground)} 
-                      blurb={album.blurb} 
-                    />
+                  <div className="h-1/2 lg:h-full lg:w-1/2 flex items-center justify-center p-2 md:p-4">
+                    <div className="w-full max-h-full aspect-square">
+                      <AlbumBlurb 
+                        key={`${album.id}-${currentSlideIndex}`}
+                        blurbBackground={album.blurbBackground}
+                        blurb={album.blurb} 
+                        backgroundImages={(album.artworkImages || []).slice(1)}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -194,7 +138,7 @@ export default function Carousel({ albums }: CarouselProps) {
               href={currentSpotifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center rounded-lg bg-neutral-100 px-4 py-2 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white"
             >
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
@@ -205,7 +149,7 @@ export default function Carousel({ albums }: CarouselProps) {
               href={currentBandcampUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center rounded-lg bg-neutral-100 px-4 py-2 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white"
             >
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-6h2v2h-2v-2zm0-8h2v6h-2V8z"/>

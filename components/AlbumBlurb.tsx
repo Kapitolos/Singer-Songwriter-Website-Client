@@ -4,17 +4,31 @@ import { assetPath } from "../utils/assetPath";
 type AlbumBlurbProps = {
   blurbBackground: string;
   blurb: string;
+  backgroundImages?: string[];
 };
 
-export default function AlbumBlurb({ blurbBackground, blurb }: AlbumBlurbProps) {
+export default function AlbumBlurb({ blurbBackground, blurb, backgroundImages = [] }: AlbumBlurbProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [bgIndex, setBgIndex] = useState(0);
 
   // Reset typing animation when blurb changes
   useEffect(() => {
     setDisplayedText("");
     setCurrentIndex(0);
   }, [blurb]);
+
+  useEffect(() => {
+    setBgIndex(0);
+  }, [backgroundImages]);
+
+  useEffect(() => {
+    if (backgroundImages.length <= 1) return;
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 14000);
+    return () => clearInterval(interval);
+  }, [backgroundImages]);
 
   // Typing animation effect
   useEffect(() => {
@@ -28,32 +42,25 @@ export default function AlbumBlurb({ blurbBackground, blurb }: AlbumBlurbProps) 
     }
   }, [currentIndex, blurb]);
 
+  const activeBackground = backgroundImages.length > 0 ? backgroundImages[bgIndex] : blurbBackground;
+
   return (
     <div className="relative w-full h-full rounded-xl overflow-hidden">
       {/* Background Image */}
       <img 
-        src={assetPath(blurbBackground)} 
+        src={assetPath(activeBackground)} 
         alt="Album Background" 
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover transition-opacity duration-1000"
       />
 
-      {/* Beige Paper Overlay */}
-      <div className="absolute inset-0 bg-amber-50/90"></div>
+      {/* Readability overlay */}
+      <div className="absolute inset-0 bg-black/55"></div>
 
-      {/* Blurb Text with Typing Animation - Fixed Position */}
+      {/* Blurb Text with Typing Animation and internal scroll */}
       <div className="absolute inset-0 p-3 lg:p-6">
-        <div className="grid place-items-center w-full h-full">
-          <div className="relative w-full max-w-2xl">
-            {/* Invisible text to establish container size and position */}
-            <div className="invisible text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
-              {blurb}
-            </div>
-            
-            {/* Visible animated text positioned absolutely */}
-            <div className="absolute inset-0 text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium leading-relaxed font-serif italic">
+        <div className="w-full h-full max-w-2xl mx-auto overflow-y-auto pr-1">
+          <div className="text-xs font-medium italic leading-relaxed text-white sm:text-sm md:text-base lg:text-lg xl:text-xl">
               {displayedText}
-              <span className="animate-pulse text-gray-600">|</span>
-            </div>
           </div>
         </div>
       </div>

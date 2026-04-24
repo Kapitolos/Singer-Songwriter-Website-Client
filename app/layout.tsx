@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Aguafina_Script, Anton_SC, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair-display",
+  display: "swap",
+});
+
+const antonSc = Anton_SC({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton-sc",
+  display: "swap",
+});
+
+const aguafinaScript = Aguafina_Script({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-aguafina-script",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfairDisplay.variable} antialiased`}>
+      <body className={`${playfairDisplay.variable} ${antonSc.variable} ${aguafinaScript.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

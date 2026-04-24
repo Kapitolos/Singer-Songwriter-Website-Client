@@ -100,14 +100,14 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
       <div className="fixed inset-0 z-50 overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
         
-        <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+        <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl border-l border-neutral-700 bg-neutral-900 text-neutral-100 shadow-xl transform transition-transform duration-300 ease-in-out">
           <div className="flex flex-col h-full">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">Stripe Checkout</h2>
+            <div className="flex items-center justify-between border-b border-neutral-700 p-6">
+              <h2 className="text-xl font-semibold text-neutral-100">Stripe Checkout</h2>
               <button
                 onClick={onBackToCart}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-neutral-400 transition-colors hover:text-neutral-200"
               >
                 <IoArrowBack size={24} />
               </button>
@@ -119,13 +119,13 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
                 <div className="text-green-500 mb-4">
                   <IoCheckmarkCircle size={64} />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Demo: Checkout session created</h3>
-                <p className="text-gray-600 mb-4">
+                <h3 className="mb-4 text-2xl font-semibold text-neutral-100">Demo: Checkout session created</h3>
+                <p className="mb-4 text-neutral-400">
                   This is a mock. In production, you would be redirected to Stripe here and complete payment on Stripe's page. No redirect or charge happens in this demo.
                 </p>
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4 text-left">
-                  <p className="text-sm font-medium text-amber-900 mb-2">How far the flow goes</p>
-                  <ul className="text-sm text-amber-800 space-y-1">
+                <div className="mb-4 rounded-lg border border-neutral-600 bg-neutral-800/80 p-4 text-left">
+                  <p className="mb-2 text-sm font-medium text-neutral-200">How far the flow goes</p>
+                  <ul className="space-y-1 text-sm text-neutral-300">
                     <li>✓ Cart total calculated (subtotal + shipping + tax)</li>
                     <li>✓ Line items built from cart</li>
                     <li>✓ &quot;Session&quot; created with amount below</li>
@@ -133,22 +133,22 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
                     <li>✗ No payment is taken</li>
                   </ul>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                  <p className="text-sm text-gray-600">
+                <div className="mb-6 rounded-lg border border-neutral-700 bg-neutral-800/60 p-4">
+                  <p className="text-sm text-neutral-400">
                     Session ID: {checkoutSession.id}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-neutral-400">
                     Amount: ${(checkoutSession.amount_total / 100).toFixed(2)} {checkoutSession.currency.toUpperCase()}
                   </p>
                 </div>
                 <button
                   onClick={onBackToCart}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 rounded-lg bg-neutral-100 px-6 py-3 font-medium text-neutral-950 transition-colors hover:bg-white"
                 >
                   <IoArrowBack size={20} />
                   Back to cart
                 </button>
-                <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mt-6">
+                <div className="mt-6 flex items-center justify-center space-x-2 text-sm text-neutral-500">
                   <IoShield size={16} />
                   <span>Secure checkout powered by Stripe (when wired to a backend)</span>
                 </div>
@@ -164,14 +164,14 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
       
-      <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+      <div className="font-cart-checkout absolute right-0 top-0 h-full w-full max-w-2xl border-l border-neutral-700 bg-neutral-900 text-neutral-100 shadow-xl transform transition-transform duration-300 ease-in-out">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Secure Checkout</h2>
+          <div className="flex items-center justify-between border-b border-neutral-700 p-6">
+            <h2 className="text-xl font-semibold text-neutral-100">Secure Checkout</h2>
             <button
               onClick={onBackToCart}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-neutral-400 transition-colors hover:text-neutral-200"
             >
               <IoArrowBack size={24} />
             </button>
@@ -180,12 +180,12 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
             {/* Stripe Benefits */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center">
-                <IoCard className="mr-2" />
+            <div className="mb-6 rounded-lg border border-neutral-600 bg-neutral-800/60 p-6">
+              <h3 className="mb-3 flex items-center text-lg font-semibold text-neutral-100">
+                <IoCard className="mr-2 text-red-500" />
                 Secure Payment Benefits
               </h3>
-              <ul className="space-y-2 text-sm text-blue-800">
+              <ul className="space-y-2 text-sm text-neutral-300">
                 <li>• 256-bit SSL encryption</li>
                 <li>• PCI DSS compliant</li>
                 <li>• Multiple payment methods</li>
@@ -195,24 +195,24 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
             </div>
 
             {/* Order Summary */}
-            <div className="bg-gray-50 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
+            <div className="mb-6 rounded-lg border border-neutral-700 bg-neutral-800/60 p-6">
+              <h3 className="mb-4 text-lg font-semibold text-neutral-100">Order Summary</h3>
               <div className="space-y-3">
                 {state.items.map((item) => (
                   <div key={item.product.id} className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
                       <img src={assetPath(item.product.imageUrl)} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                       <div>
-                        <p className="font-medium text-gray-900">{item.product.title}</p>
-                        <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                        <p className="font-medium text-neutral-100">{item.product.title}</p>
+                        <p className="text-sm text-neutral-400">Qty: {item.quantity}</p>
                       </div>
                     </div>
-                    <p className="font-medium text-gray-900">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
+                    <p className="font-medium text-neutral-100">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
                   </div>
                 ))}
               </div>
               
-              <div className="border-t border-gray-200 mt-4 pt-4 space-y-2">
+              <div className="mt-4 space-y-2 border-t border-neutral-700 pt-4">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal:</span>
                   <span>${totalPrice.toFixed(2)} CAD</span>
@@ -225,7 +225,7 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
                   <span>Tax (15%):</span>
                   <span>${taxAmount.toFixed(2)} CAD</span>
                 </div>
-                <div className="flex justify-between text-lg font-semibold border-t border-gray-200 pt-2">
+                <div className="flex justify-between border-t border-neutral-700 pt-2 text-lg font-semibold">
                   <span>Total:</span>
                   <span>${finalTotal.toFixed(2)} CAD</span>
                 </div>
@@ -234,8 +234,8 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
 
             {/* Error Message */}
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                <p className="text-red-600 text-sm">{error}</p>
+              <div className="mb-6 rounded-lg border border-red-800 bg-red-950/40 p-4">
+                <p className="text-sm text-red-300">{error}</p>
               </div>
             )}
 
@@ -243,7 +243,7 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
             <button
               onClick={createStripeCheckout}
               disabled={isLoading || state.items.length === 0}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+              className="flex w-full items-center justify-center space-x-2 rounded-lg bg-red-700 py-4 px-6 font-semibold text-white transition-colors duration-200 hover:bg-red-600 disabled:bg-neutral-600 disabled:text-neutral-300"
             >
               {isLoading ? (
                 <>
@@ -260,11 +260,11 @@ export default function StripeCheckout({ onBackToCart }: StripeCheckoutProps) {
 
             {/* Security Notice */}
             <div className="text-center mt-4">
-              <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+              <div className="flex items-center justify-center space-x-2 text-sm text-neutral-500">
                 <IoShield size={16} />
                 <span>Secure checkout powered by Stripe</span>
               </div>
-              <div className="flex items-center justify-center space-x-2 text-xs text-gray-400 mt-2">
+              <div className="mt-2 flex items-center justify-center space-x-2 text-xs text-neutral-500">
                 <span>PCI DSS Compliant • 256-bit SSL • Fraud Protection</span>
               </div>
             </div>

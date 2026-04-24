@@ -105,7 +105,7 @@ export default function AudioPlayer({ previewUrl, albumTitle }: AudioPlayerProps
   };
 
   return (
-    <div className="bg-gradient-to-r from-black to-gray-800 rounded-xl p-4 shadow-lg border border-amber-100">
+    <div className="rounded-xl border border-neutral-600 bg-gradient-to-r from-neutral-900 to-black p-4 shadow-lg">
       <div className="flex items-center gap-3">
         <audio ref={audioRef} className="hidden" preload="auto" />
 

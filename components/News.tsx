@@ -100,10 +100,10 @@ export default function News() {
     <div className="space-y-8">
       <div className="space-y-6">
         {sortedItems.map((item) => (
-          <div key={item.id} className="bg-white rounded-2xl shadow-xl p-6 border border-amber-100">
+          <div key={item.id} className="rounded-2xl border border-neutral-600 bg-neutral-800/80 p-6 shadow-xl">
             <div className="flex flex-col lg:flex-row lg:items-start gap-4">
               <div className="lg:w-1/4">
-                <div className="text-sm text-gray-500 font-medium mb-3">{item.date}</div>
+                <div className="mb-3 text-sm font-medium text-neutral-400">{item.date}</div>
                 {item.imageUrl && (
                   <img 
                     src={assetPath(item.imageUrl)} 
@@ -113,18 +113,18 @@ export default function News() {
                 )}
               </div>
               <div className="lg:w-3/4">
-                <h3 className="text-xl font-semibold text-black mb-3">{item.title}</h3>
+                <h3 className="mb-3 text-xl font-semibold font-heading text-heading">{item.title}</h3>
                 {item.content ? (
-                  <p className="text-gray-700 mb-4 leading-relaxed">{item.content}</p>
+                  <p className="mb-4 leading-relaxed text-neutral-300">{item.content}</p>
                 ) : null}
                 
                 {item.showAddToCart && item.price != null && (
                   <div className="flex flex-wrap items-center gap-4 mb-4">
-                    <span className="text-xl font-bold text-black">${item.price} CAD</span>
-                    <span className="text-sm text-gray-500">+ shipping</span>
+                    <span className="text-xl font-bold text-neutral-100">${item.price} CAD</span>
+                    <span className="text-sm text-neutral-400">+ shipping</span>
                     <button
                       onClick={() => addToCart(vinylProduct)}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                      className="inline-flex items-center gap-2 rounded-lg bg-neutral-100 px-4 py-2 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white"
                     >
                       <IoCart size={20} />
                       Add to Cart
@@ -153,7 +153,7 @@ export default function News() {
                     href={item.link}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                    className="inline-flex items-center rounded-lg bg-neutral-100 px-4 py-2 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white"
                   >
                     {item.linkText}
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,10 +168,10 @@ export default function News() {
       </div>
 
       {/* Newsletter Signup */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100">
+      <div className="rounded-2xl border border-neutral-600 bg-neutral-800/80 p-8 shadow-xl">
         <div className="text-center">
-          <h3 className="text-2xl font-semibold text-black mb-4">Stay Connected</h3>
-          <p className="text-gray-700 mb-6">
+          <h3 className="mb-4 text-2xl font-semibold font-heading text-heading">Stay Connected</h3>
+          <p className="mb-6 text-neutral-300">
             Get notified about new releases, upcoming shows, and exclusive content.
           </p>
           <div className="max-w-md mx-auto">
@@ -179,9 +179,9 @@ export default function News() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="flex-1 rounded-lg border border-neutral-600 bg-neutral-900 px-4 py-3 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600"
               />
-              <button className="px-6 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
+              <button className="rounded-lg bg-neutral-100 px-6 py-3 font-semibold text-neutral-950 shadow-md transition-colors duration-200 hover:bg-white">
                 Subscribe
               </button>
             </div>

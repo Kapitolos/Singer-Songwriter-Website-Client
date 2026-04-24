@@ -115,31 +115,31 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
   const renderStepIndicator = () => (
     <div className="flex items-center justify-center mb-8">
       <div className="flex items-center space-x-4">
-        <div className={`flex items-center ${currentStep >= 1 ? 'text-black' : 'text-gray-400'}`}>
+        <div className={`flex items-center ${currentStep >= 1 ? 'text-neutral-100' : 'text-neutral-500'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-            currentStep >= 1 ? 'border-black bg-black text-white' : 'border-gray-300'
+            currentStep >= 1 ? 'border-red-600 bg-red-600 text-white' : 'border-neutral-600 text-neutral-400'
           }`}>
             {currentStep > 1 ? <IoCheckmarkCircle size={20} /> : '1'}
           </div>
           <span className="ml-2 font-medium">Shipping</span>
         </div>
         
-        <div className={`w-16 h-0.5 ${currentStep >= 2 ? 'bg-black' : 'bg-gray-300'}`} />
+        <div className={`h-0.5 w-16 ${currentStep >= 2 ? 'bg-red-600' : 'bg-neutral-600'}`} />
         
-        <div className={`flex items-center ${currentStep >= 2 ? 'text-black' : 'text-gray-400'}`}>
+        <div className={`flex items-center ${currentStep >= 2 ? 'text-neutral-100' : 'text-neutral-500'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-            currentStep >= 2 ? 'border-black bg-black text-white' : 'border-gray-300'
+            currentStep >= 2 ? 'border-red-600 bg-red-600 text-white' : 'border-neutral-600 text-neutral-400'
           }`}>
             {currentStep > 2 ? <IoCheckmarkCircle size={20} /> : '2'}
           </div>
           <span className="ml-2 font-medium">Payment</span>
         </div>
         
-        <div className={`w-16 h-0.5 ${currentStep >= 3 ? 'bg-black' : 'bg-gray-300'}`} />
+        <div className={`h-0.5 w-16 ${currentStep >= 3 ? 'bg-red-600' : 'bg-neutral-600'}`} />
         
-        <div className={`flex items-center ${currentStep >= 3 ? 'text-black' : 'text-gray-400'}`}>
+        <div className={`flex items-center ${currentStep >= 3 ? 'text-neutral-100' : 'text-neutral-500'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-            currentStep >= 3 ? 'border-black bg-black text-white' : 'border-gray-300'
+            currentStep >= 3 ? 'border-red-600 bg-red-600 text-white' : 'border-neutral-600 text-neutral-400'
           }`}>
             3
           </div>
@@ -153,79 +153,79 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
     <form onSubmit={handleShippingSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">First Name</label>
           <input
             type="text"
             required
             value={shippingInfo.firstName}
             onChange={(e) => setShippingInfo({...shippingInfo, firstName: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Last Name</label>
           <input
             type="text"
             required
             value={shippingInfo.lastName}
             onChange={(e) => setShippingInfo({...shippingInfo, lastName: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Email</label>
           <input
             type="email"
             required
             value={shippingInfo.email}
             onChange={(e) => setShippingInfo({...shippingInfo, email: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Phone</label>
           <input
             type="tel"
             required
             value={shippingInfo.phone}
             onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">Address</label>
         <input
           type="text"
           required
           value={shippingInfo.address}
           onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+          className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
         />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">City</label>
           <input
             type="text"
             required
             value={shippingInfo.city}
             onChange={(e) => setShippingInfo({...shippingInfo, city: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Province</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Province</label>
           <select
             required
             value={shippingInfo.province}
             onChange={(e) => setShippingInfo({...shippingInfo, province: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           >
             <option value="">Select Province</option>
             <option value="AB">Alberta</option>
@@ -244,13 +244,13 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Postal Code</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Postal Code</label>
           <input
             type="text"
             required
             value={shippingInfo.postalCode}
             onChange={(e) => setShippingInfo({...shippingInfo, postalCode: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
       </div>
@@ -258,7 +258,7 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
       <div className="flex justify-end">
         <button
           type="submit"
-          className="px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
+          className="flex items-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 transition-colors duration-200 hover:bg-white"
         >
           Continue to Payment
           <IoArrowForward size={20} />
@@ -270,49 +270,49 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
   const renderPaymentForm = () => (
     <form onSubmit={handlePaymentSubmit} className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">Cardholder Name</label>
         <input
           type="text"
           required
           value={paymentInfo.cardholderName}
           onChange={(e) => setPaymentInfo({...paymentInfo, cardholderName: e.target.value})}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+          className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
         />
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">Card Number</label>
         <input
           type="text"
           required
           placeholder="1234 5678 9012 3456"
           value={paymentInfo.cardNumber}
           onChange={(e) => setPaymentInfo({...paymentInfo, cardNumber: e.target.value})}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+          className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
         />
       </div>
       
       <div className="grid grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">Expiry Date</label>
           <input
             type="text"
             required
             placeholder="MM/YY"
             value={paymentInfo.expiryDate}
             onChange={(e) => setPaymentInfo({...paymentInfo, expiryDate: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+          <label className="block text-sm font-medium text-neutral-300 mb-2">CVV</label>
           <input
             type="text"
             required
             placeholder="123"
             value={paymentInfo.cvv}
             onChange={(e) => setPaymentInfo({...paymentInfo, cvv: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full px-4 py-3 border border-neutral-600 rounded-lg bg-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 focus:border-transparent focus:ring-2 focus:ring-red-600"
           />
         </div>
       </div>
@@ -321,14 +321,14 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
         <button
           type="button"
           onClick={goBack}
-          className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2"
+          className="px-6 py-3 border border-neutral-600 text-neutral-200 font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-200 flex items-center gap-2"
         >
           <IoArrowBack size={20} />
           Back
         </button>
         <button
           type="submit"
-          className="px-8 py-3 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
+          className="flex items-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 transition-colors duration-200 hover:bg-white"
         >
           Review Order
           <IoArrowForward size={20} />
@@ -339,24 +339,24 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
 
   const renderOrderReview = () => (
     <div className="space-y-6">
-      <div className="bg-gray-50 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
+      <div className="rounded-lg border border-neutral-700 bg-neutral-800/60 p-6">
+        <h3 className="mb-4 text-lg font-semibold text-neutral-100">Order Summary</h3>
         <div className="space-y-3">
           {state.items.map((item) => (
             <div key={item.product.id} className="flex justify-between items-center">
               <div className="flex items-center space-x-3">
                 <img src={assetPath(item.product.imageUrl)} alt={item.product.title} className="w-12 h-12 object-cover rounded" />
                 <div>
-                  <p className="font-medium text-gray-900">{item.product.title}</p>
-                  <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                  <p className="font-medium text-neutral-100">{item.product.title}</p>
+                  <p className="text-sm text-neutral-400">Qty: {item.quantity}</p>
                 </div>
               </div>
-              <p className="font-medium text-gray-900">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
+              <p className="font-medium text-neutral-100">${(item.product.price * item.quantity).toFixed(2)} CAD</p>
             </div>
           ))}
         </div>
         
-        <div className="border-t border-gray-200 mt-4 pt-4 space-y-2">
+        <div className="mt-4 space-y-2 border-t border-neutral-700 pt-4">
           <div className="flex justify-between text-sm">
             <span>Subtotal:</span>
             <span>${totalPrice.toFixed(2)} CAD</span>
@@ -369,15 +369,15 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
             <span>Tax (15%):</span>
             <span>${taxAmount.toFixed(2)} CAD</span>
           </div>
-          <div className="flex justify-between text-lg font-semibold border-t border-gray-200 pt-2">
+          <div className="flex justify-between border-t border-neutral-700 pt-2 text-lg font-semibold">
             <span>Total:</span>
             <span>${finalTotal.toFixed(2)} CAD</span>
           </div>
         </div>
       </div>
       
-      <div className="bg-gray-50 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipping Information</h3>
+      <div className="rounded-lg border border-neutral-700 bg-neutral-800/60 p-6">
+        <h3 className="mb-4 text-lg font-semibold text-neutral-100">Shipping Information</h3>
         <div className="space-y-2 text-sm">
           <p><span className="font-medium">Name:</span> {shippingInfo.firstName} {shippingInfo.lastName}</p>
           <p><span className="font-medium">Email:</span> {shippingInfo.email}</p>
@@ -392,7 +392,7 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
         <button
           type="button"
           onClick={goBack}
-          className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2"
+          className="px-6 py-3 border border-neutral-600 text-neutral-200 font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-200 flex items-center gap-2"
         >
           <IoArrowBack size={20} />
           Back
@@ -400,7 +400,7 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
         <button
           onClick={handlePlaceOrder}
           disabled={isProcessing}
-          className="px-8 py-3 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
+          className="flex items-center gap-2 rounded-lg bg-neutral-100 px-8 py-3 font-semibold text-neutral-950 transition-colors duration-200 hover:bg-white disabled:bg-neutral-600 disabled:text-neutral-300"
         >
           {isProcessing ? 'Processing...' : 'Place Order'}
         </button>
@@ -414,14 +414,14 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
       <div className="fixed inset-0 z-50 overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
         
-        <div className="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+        <div className="absolute right-0 top-0 h-full w-full max-w-2xl border-l border-neutral-700 bg-neutral-900 text-neutral-100 shadow-xl transform transition-transform duration-300 ease-in-out">
           <div className="flex flex-col h-full">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">Checkout</h2>
+            <div className="flex items-center justify-between border-b border-neutral-700 p-6">
+              <h2 className="text-xl font-semibold text-neutral-100">Checkout</h2>
               <button
                 onClick={onBackToCart}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-neutral-400 transition-colors hover:text-neutral-200"
               >
                 <IoArrowBack size={24} />
               </button>
@@ -430,16 +430,16 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
             {/* Authentication Required */}
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
-                <div className="text-gray-400 mb-4">
+                <div className="mb-4 text-neutral-500">
                   <IoPerson size={64} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Authentication Required</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="mb-4 text-xl font-semibold text-neutral-100">Authentication Required</h3>
+                <p className="mb-6 text-neutral-400">
                   Please sign in or create an account to complete your purchase.
                 </p>
                 <button
                   onClick={onBackToCart}
-                  className="px-6 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors duration-200"
+                  className="rounded-lg bg-neutral-100 px-6 py-3 font-medium text-neutral-950 transition-colors duration-200 hover:bg-white"
                 >
                   Back to Cart
                 </button>
@@ -455,14 +455,14 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity" />
       
-      <div className="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+      <div className="absolute right-0 top-0 h-full w-full max-w-2xl border-l border-neutral-700 bg-neutral-900 text-neutral-100 shadow-xl transform transition-transform duration-300 ease-in-out">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Checkout</h2>
+          <div className="flex items-center justify-between border-b border-neutral-700 p-6">
+            <h2 className="text-xl font-semibold text-neutral-100">Checkout</h2>
             <button
               onClick={onBackToCart}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-neutral-400 transition-colors hover:text-neutral-200"
             >
               <IoArrowBack size={24} />
             </button>
@@ -475,12 +475,12 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
                 <div className="text-green-500 mb-4">
                   <IoCheckmarkCircle size={64} />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Order Placed Successfully!</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="mb-4 text-2xl font-semibold text-neutral-100">Order Placed Successfully!</h3>
+                <p className="mb-6 text-neutral-400">
                   Thank you for your order. You will receive a confirmation email shortly.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600">
+                <div className="rounded-lg border border-neutral-700 bg-neutral-800/60 p-4">
+                  <p className="text-sm text-neutral-400">
                     Order #: {Math.random().toString(36).substr(2, 9).toUpperCase()}
                   </p>
                 </div>
@@ -492,8 +492,8 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
                 {currentStep === 1 && (
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <IoLocation size={24} className="text-black" />
-                  <h3 className="text-lg font-semibold text-gray-900">Shipping Information</h3>
+                  <IoLocation size={24} className="text-red-500" />
+                  <h3 className="text-lg font-semibold text-neutral-100">Shipping Information</h3>
                 </div>
                 {renderShippingForm()}
               </div>
@@ -502,8 +502,8 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
             {currentStep === 2 && (
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <IoCard size={24} className="text-black" />
-                  <h3 className="text-lg font-semibold text-gray-900">Payment Information</h3>
+                  <IoCard size={24} className="text-red-500" />
+                  <h3 className="text-lg font-semibold text-neutral-100">Payment Information</h3>
                 </div>
                 {renderPaymentForm()}
               </div>
@@ -512,8 +512,8 @@ export default function Checkout({ onBackToCart }: CheckoutProps) {
             {currentStep === 3 && (
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <IoCheckmarkCircle size={24} className="text-black" />
-                  <h3 className="text-lg font-semibold text-gray-900">Review & Place Order</h3>
+                  <IoCheckmarkCircle size={24} className="text-red-500" />
+                  <h3 className="text-lg font-semibold text-neutral-100">Review & Place Order</h3>
                 </div>
                 {renderOrderReview()}
               </div>
